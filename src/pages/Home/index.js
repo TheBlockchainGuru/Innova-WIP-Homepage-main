@@ -8,6 +8,9 @@ import Dashboard from './Dashboard';
 import HowItWorks from './HowItWorks';
 import HotDeals from './HotDeals';
 import Categories from './Categories';
+import Community from './Community';
+import Feedback from './Feedback';
+import Faq from './Faq';
 
 export default function Home () {
     return (
@@ -21,6 +24,9 @@ export default function Home () {
             <HowItWorks />
             <HotDeals />
             <Categories />
+            <Community />
+            <Feedback />
+            <Faq />
         </Stack>
     );
 }
