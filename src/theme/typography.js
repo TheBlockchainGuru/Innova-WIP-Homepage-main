@@ -27,19 +27,14 @@ const typography = {
     // fontWeightBold: 700,
     h1: {
         fontSize: pxToRem(56),
-        fontFamily: 'SF Pro Display',
         ...responsiveFontSizes({ sm: 105, md: 160, lg: 160, xl: 160 }),
     },
     h2: {
         fontSize: pxToRem(56),
-        fontFamily: 'SF Pro Display',
-        fontWeight: 500,
         ...responsiveFontSizes({ sm: 105, md: 120, lg: 120, xl: 120 }),
     },
     h3: {
         fontSize: pxToRem(36),
-        fontFamily: 'SF Pro Display',
-        fontWeight: 600,
         ...responsiveFontSizes({ sm: 64, md: 64, lg: 64, xl: 64 }),
     },
     h4: {
@@ -48,7 +43,6 @@ const typography = {
     },
     h5: {
         fontSize: pxToRem(16),
-        fontFamily: 'Inter-Bold',
         ...responsiveFontSizes({ sm: 16, md: 17, lg: 18, xl: 20 }),
     },
     h6: {
@@ -57,8 +51,6 @@ const typography = {
     },
     subtitle1: {
         fontSize: pxToRem(24),
-        fontFamily: 'SF UI Display',
-        fontWeight: 500,
         ...responsiveFontSizes({ sm: 36, md: 36, lg: 36, xl: 36 })
     },
     subtitle2: {
@@ -71,7 +63,6 @@ const typography = {
     },
     body2: {
         fontSize: pxToRem(18),
-        fontFamily: 'SF UI Display',
         ...responsiveFontSizes({ sm: 24, md: 24, lg: 24, xl: 24 })
     },
     caption: {
