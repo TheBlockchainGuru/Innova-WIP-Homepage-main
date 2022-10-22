@@ -106,6 +106,7 @@ export default function Header () {
                 <>
                 {['Explore', 'Pricing', 'Affiliation', 'Blog'].map((item, key) =>
                     <Link
+                        to={`/${item.toLowerCase()}`}
                         style={{
                             textDecoration: 'none',
                             color: 'inherit'
