@@ -7,39 +7,55 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import CategoryCard from '../../components/cards/CategoryCard';
+import { categories } from '../../constants/content';
 
 export default function Categories () {
     const theme = useTheme();
+    const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
     return (
-        <Box
+        <Stack
+            alignItems="center"
         >
             <Typography
-            >Categories</Typography>
-            <Typography
+                variant="h3"
                 sx={{
-                    textAlign: 'center'
+                    lineHeight: '64px'
+                }}
+            >Categories</Typography>
+            <Stack
+                flexDirection="row"
+                justifyContent="center"
+                sx={{
+                    pt: matchUpMd ? 3: 0,
+                    pb: matchUpMd ? 7.5: 9
                 }}
             >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Integer nec odio. 
-                Praesent libero. 
-            </Typography>
+                <Typography
+                    color="text.secondary"
+                    sx={{
+                        maxWidth: 445,
+                        textAlign: 'center'
+                    }}
+                >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    Integer nec odio. 
+                    Praesent libero. 
+                </Typography>
+            </Stack>
             <Box
                 sx={{
                     display: 'grid',
+                    width: '100%',
                     gridTemplateColumns: 'repeat(4, 1fr)',
                     rowGap: 6,
                     columnGap: 8
                 }}
             >
-            {[1,2,3,4,5,6,7,8].map((item, key) =>
+            {categories.map((item, key) =>
                 <CategoryCard key={key} {...item} />
             )}
             </Box>
-            <Stack flexDirection="row" justifyContent="center" sx={{ pt: 10 }}>
-                <Button variant="outlined">View all deals</Button>
-            </Stack>
-        </Box>
+        </Stack>
     )
 }

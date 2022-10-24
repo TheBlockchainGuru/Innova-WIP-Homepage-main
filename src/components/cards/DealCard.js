@@ -13,8 +13,10 @@ export default function DealCard () {
                 boxShadow: '0px 1.45455px 36.3636px rgba(69, 42, 124, 0.1)',
                 backdropFilter: 'blur(42.5447px)',
                 borderRadius: 3.5,
+                border: `4px solid #594F6D`,
                 pt: 3.5,
-                pb: 3
+                pb: 3,
+                overflow: 'hidden'
             }}
         >
             <Stack
@@ -22,6 +24,7 @@ export default function DealCard () {
             >
                 <Stack
                     flexDirection="row"
+                    alignItems="center"
                     gap={2.5}
                     sx={{
                         px: 3.5
@@ -29,6 +32,13 @@ export default function DealCard () {
                 >
                     <Stack
                         flexDirection="row"
+                        sx={{
+                            background: '#594F6D',
+                            // opacity: 0.25,
+                            boxShadow: '-2px 3px 10px rgba(0, 0, 0, 0.09)',
+                            borderRadius: 3,
+                            p: 0.375
+                        }}
                     >
                         <Box 
                             component="img"
@@ -36,39 +46,67 @@ export default function DealCard () {
                         />
                     </Stack>
                     <Stack>
-                        <Typography>AWS Activate</Typography>
-                        <Typography>Amazon's cloud services platform</Typography>
+                        <Typography variant="h5">AWS Activate</Typography>
+                        <Typography variant="caption" color="text.secondary">Amazon's cloud services platform</Typography>
                     </Stack>
                 </Stack>
                 <Box sx={{
                     px: 3.5
                 }}>
-                    <Typography>
-                        6 Months Free plus 1,000 credits for startups
+                    <Typography 
+                        variant="h6" 
+                        sx={{ 
+                            '& span': {
+                                color: '#C69BFF'
+                            },
+                            lineHeight: '30px' }}
+                    >
+                        <span>6 Months Free </span> plus <br /> 1,000 credits for startups
                     </Typography>
                 </Box>
                 <Box>
                     <Box
                         sx={{
                             background: '#594F6D',
-                            transform: 'rotate(-5deg)'
+                            transform: 'rotate(-5deg) scale(1.05, 1)',
+                            py: 2,
                         }}
                     >
-                        <Typography>Save Up To $5000</Typography>
+                        <Typography
+                            sx={{
+                                color: 'rgba(219, 201, 255, 0.87)',
+                                textTransform: 'uppercase',
+                                textAlign: 'center',
+                                lineHeight: 1,
+                                letterSpacing: 1.44,
+                                fontWeight: 800,
+                                fontSize: '20px !important'
+                            }}
+                        >Save Up To $5000</Typography>
                     </Box>
                 </Box>
-                <Stack
-                    flexDirection="row"
-                    justifyContent="flex-end"
+            </Stack>
+            <Stack
+                flexDirection="row"
+                justifyContent="flex-end"
+                sx={{
+                    px: 3,
+                    pt: 2
+                }}
+            >
+                <Chip 
+                    label="Agency"
+                    variant="outlined"
+                    clickable
                     sx={{
-                        px: 3
+                        bgcolor: '#fff',
+                        color: '#000',
+                        fontWeight: 700,
+                        '&:hover': {
+                            color: '#fff'
+                        }
                     }}
-                >
-                    <Chip 
-                        label="Agency"
-                        variant="outlined"
-                    />
-                </Stack>
+                />
             </Stack>
         </Box>
     )

@@ -10,20 +10,38 @@ import DealCard from  '../../components/cards/DealCard';
 
 export default function HotDeals () {
     const theme = useTheme();
+    const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
     return (
-        <Box>
+        <Stack
+            alignItems="center"
+        >
             <Typography
-            >Hot Deals</Typography>
-            <Typography
+                variant="h3"
                 sx={{
-                    textAlign: 'center'
+                    lineHeight: '64px'
+                }}
+            >Hot Deals</Typography>
+            <Stack
+                flexDirection="row"
+                justifyContent="center"
+                sx={{
+                    pt: matchUpMd ? 3: 0,
+                    pb: matchUpMd ? 7.5: 9
                 }}
             >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Integer nec odio. 
-                Praesent libero. 
-            </Typography>
+                <Typography
+                    color="text.secondary"
+                    sx={{
+                        maxWidth: 445,
+                        textAlign: 'center'
+                    }}
+                >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    Integer nec odio. 
+                    Praesent libero. 
+                </Typography>
+            </Stack>
             <Box
                 sx={{
                     display: 'grid',
@@ -37,8 +55,16 @@ export default function HotDeals () {
             )}
             </Box>
             <Stack flexDirection="row" justifyContent="center" sx={{ pt: 10 }}>
-                <Button variant="outlined">View all deals</Button>
+                <Button 
+                    variant="outlined" 
+                    sx={{ 
+                        px: 4.5, 
+                        py: 1.5, 
+                        lineHeight: 1,
+                        borderRadius: 2.5
+                    }}
+                >View all deals</Button>
             </Stack>
-        </Box>
+        </Stack>
     )
 }

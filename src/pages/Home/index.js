@@ -17,7 +17,8 @@ export default function Home () {
         <Stack
             gap={20}
             sx={{
-                px: 14
+                px: 14,
+                pb: 25
             }}
         >
             <Dashboard />

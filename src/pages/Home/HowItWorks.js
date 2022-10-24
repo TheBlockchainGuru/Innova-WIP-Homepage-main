@@ -10,27 +10,51 @@ import { howItWorks } from '../../constants/content';
 
 export default function HowItWorks () {
     const theme = useTheme();
+    const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
     return (
         <Stack
             alignItems="center"
         >
             <Typography
-            >How it works</Typography>
-            <Typography
+                variant="h3"
                 sx={{
-                    textAlign: 'center'
+                    lineHeight: '64px'
+                }}
+            >How it works</Typography>
+            <Stack
+                flexDirection="row"
+                justifyContent="center"
+                sx={{
+                    pt: matchUpMd ? 3: 0,
+                    pb: matchUpMd ? 7.5: 9
                 }}
             >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Integer nec odio. 
-                Praesent libero. 
-            </Typography>
-            <Stack flexDirection="row" gap={6}>
+                <Typography
+                    color="text.secondary"
+                    sx={{
+                        maxWidth: 445,
+                        textAlign: 'center'
+                    }}
+                >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    Integer nec odio. 
+                    Praesent libero. 
+                </Typography>
+            </Stack>
+            <Box
+                sx={{
+                    display: 'grid',
+                    gridTemplateColumns: matchUpMd 
+                                        ? 'repeat(3, 1fr)' 
+                                        : 'repeat(1, 1fr)',
+                    gap: 6,
+                }}
+            >
             {howItWorks.map((item, key) =>
                 <WorkCard key={key} {...item} />
             )}
-            </Stack>
+            </Box>
         </Stack>
     )
 }

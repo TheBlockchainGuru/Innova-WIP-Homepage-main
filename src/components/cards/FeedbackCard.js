@@ -6,12 +6,13 @@ import {
     Rating
 } from '@mui/material';
 
-export default function FeedbackCard () {
+export default function FeedbackCard ({img, content, client, clientName}) {
     return (
         <Box
             sx={{
                 height: 460,
-                backgroundImage: 'url(/images/feedback/1.png)',
+                backgroundImage: `url(${img})`,
+                backgroundSize: '100% 100%',
                 borderRadius: 3.5
             }}
         >
@@ -24,26 +25,29 @@ export default function FeedbackCard () {
                     borderRadius: 3.5
                 }}
             >
-                {/* <Box component="img" src="/images/feedback/1.png" /> */}
                 <Stack
+                    gap={3.5}
                     sx={{
-                        // position: 'absolute',
-                        // width: '100%',
-                        // bottom: 0,
                         p: 4
                     }}
                 >
                     <Rating name="read-only" value={5} readOnly />
-                    <Typography>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. </Typography>
+                    <Typography variant="h6" 
+                        sx={{ 
+                            fontWeight: 700,
+                            maxWidth: 330,
+                        }}
+                    >{content}</Typography>
                     <Stack
                         flexDirection="row"
                         alignItems="center"
+                        gap={2}
                     >
 
                         <Avatar 
-                            src="/images/avatar/1.png"
+                            src={client}
                         />
-                        <Typography>Brock</Typography>
+                        <Typography>{clientName}</Typography>
                     </Stack>
                 </Stack>
             </Stack>

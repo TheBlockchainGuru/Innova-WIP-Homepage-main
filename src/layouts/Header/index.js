@@ -170,7 +170,7 @@ export default function Header () {
                         </Link>
                     </MenuItem>
                     ))}
-                    {!matchUpMd ?
+                    {/* {!matchUpMd ?
                     <MenuItem onClick={handleCloseUserMenu}>
                         <Typography
                         onClick={handleClickOpen}
@@ -184,7 +184,7 @@ export default function Header () {
                         >Contact Us</Typography>
                     </MenuItem>
                     :   <></>
-                    }
+                    } */}
                 </Menu>
             </Toolbar>
             <Divider />
