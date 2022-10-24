@@ -9,30 +9,57 @@ import DealCard from '../../components/cards/DealCard';
 
 export default function Explorer () {
     return (
-        <Box>
-            <Typography>All Deals</Typography>
+        <Box
+            sx={{
+                px: 14,
+                pt: 6,
+                pb: 24
+            }}
+        >
+            <Stack flexDirection="row">
+                <Box
+                    component="img"
+                    src="/images/spark.png"
+                    sx={{
+                        position: 'relative',
+                        left: -20
+                    }}
+                />
+            </Stack>
+            <Typography variant="h1">All Deals</Typography>
             <Stack
                 flexDirection="row"
                 justifyContent="space-between"
+                sx={{
+                    pt: 3.5,
+                    pb: 11
+                }}
             >
-                <Typography>217 Deals Available</Typography>
+                <Typography variant="body2" color="text.secondary">217 Deals Available</Typography>
                 <Stack
                     flexDirection="row"
+                    gap={8}
                 >
                     <Stack
                         flexDirection="row"
                         alignItems="center"
+                        gap={2}
                     >
-                        <Typography>Filter By:</Typography>
-                        <OutlinedInput />
+                        <Typography variant="body2" color="text.secondary">Filter By:</Typography>
+                        <OutlinedInput 
+                            placeholder='All Deals'
+                            size="small"
+                        />
                     </Stack>
                     <Stack
                         flexDirection="row"
                         alignItems="center"
+                        gap={2}
                     >
-                        <Typography>Order By:</Typography>
+                        <Typography variant="body2" color="text.secondary">Order By:</Typography>
                         <OutlinedInput 
-                            
+                            placeholder='Most popular first'
+                            size="small"
                         />
                     </Stack>
                 </Stack>
