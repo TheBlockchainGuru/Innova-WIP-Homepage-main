@@ -106,6 +106,7 @@ export default function Header () {
                 <>
                 {['Explore', 'Pricing', 'Affiliation', 'Blog'].map((item, key) =>
                     <Link
+                        key={key}
                         to={`/${item.toLowerCase()}`}
                         style={{
                             textDecoration: 'none',
@@ -208,6 +209,7 @@ export default function Header () {
                 >Categories:</Typography>
                 {categories.map((item, key) =>
                     <Typography
+                        key={key}
                         variant="caption"
                         sx={{
                             color: '#D4B4FF',
