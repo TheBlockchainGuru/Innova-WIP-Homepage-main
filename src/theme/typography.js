@@ -31,6 +31,8 @@ const typography = {
     },
     h2: {
         fontSize: pxToRem(30),
+        fontFamily: 'Syne',
+        fontWeight: 700,
         ...responsiveFontSizes({ sm: 30, md: 48, lg: 48, xl: 48 }),
     },
     h3: {
@@ -40,8 +42,10 @@ const typography = {
         ...responsiveFontSizes({ sm: 28, md: 40, lg: 40, xl: 40 }),
     },
     h4: {
-        fontSize: pxToRem(36),
-        ...responsiveFontSizes({ sm: 48, md: 48, lg: 48, xl: 48 }),
+        fontSize: pxToRem(22),
+        fontFamily: 'Syne',
+        fontWeight: 600,
+        ...responsiveFontSizes({ sm: 22, md: 32, lg: 32, xl: 32 }),
     },
     h5: {
         fontSize: pxToRem(20),

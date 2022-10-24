@@ -71,3 +71,30 @@ export const faqs = [{
     title: 'How can I get my product listed?',
     content: 'Urna vitae erat et lacus, consectetur ac nulla vestibulum lobortis. Nulla dapibus urna volutpat venenatis, risus faucibus.',
 }]
+
+export const features = [{
+    title: 'Cloud storage',
+    content: 'An agile platform for data management, backup, migration, access and analysis.',
+},{
+    title: 'Computing power',
+    content: 'Get the computing power you need, flexible and scalable, and only pay for what you use.',
+},{
+    title: 'Machine Learning',
+    content: 'Quickly develop, train and deploy machine learning algorithms.',
+},{
+    title: 'Content distribution',
+    content: 'Easily distribute content to your users, wherever they are in the world, without breaking the bank or worrying about speed.',
+},]
+
+export const promos = [
+    'Promo code Scalingo', 
+    'Promo codes for Hellosign',
+    'Code for mongoDB',
+    'WP Engine promo code',
+    'Cherry Servers discount',
+    'Dropbox coupon code 2022',
+    'Code for OVHcloud',
+    'Snowflake promo',
+    'Render coupon code 2022',
+    'UseCSV coupon code 2022'
+]
