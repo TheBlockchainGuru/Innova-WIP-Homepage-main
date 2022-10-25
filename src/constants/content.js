@@ -98,3 +98,26 @@ export const promos = [
     'Render coupon code 2022',
     'UseCSV coupon code 2022'
 ]
+
+export const clients = [{
+    img: '/images/clients/1.png',
+    title: '"It worked just exactly as indicated and allowed us to save thousands of dollars."',
+    name: 'Aurélien Jemma',
+    position: 'CEO @Likibu'
+}, {
+    img: '/images/clients/2.png',
+    title: '"Secret has helped us discover new tools as well as get free usage for tools we already use."',
+    name: 'Josh Bartolomucci',
+    position: 'Marketing Manager @Foxycart'
+}]
+
+export const invests = [
+    '/images/invests/1.png',
+    '/images/invests/2.png',
+    '/images/invests/3.png',
+    '/images/invests/4.png',
+    '/images/invests/5.png',
+    '/images/invests/6.png',
+    '/images/invests/7.png',
+    '/images/invests/8.png',
+]

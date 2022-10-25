@@ -6,7 +6,7 @@ import {
     Rating
 } from '@mui/material';
 
-export default function TestimonialCard ({img, title, content, client, clientName}) {
+export default function TestimonialCard ({img, title, content, client, clientName, position}) {
     return (
         <Box
             sx={{
@@ -46,7 +46,14 @@ export default function TestimonialCard ({img, title, content, client, clientNam
                         <Avatar 
                             src={client}
                         />
-                        <Typography>{clientName}</Typography>
+                        <Stack gap={.5}>
+                            <Typography>{clientName}</Typography>
+                            { position ?
+                                <Typography variant="caption" color="text.secondary">{position}</Typography>
+                                :
+                                <></>
+                            }
+                        </Stack>
                     </Stack>
                 </Stack>
             </Stack>
