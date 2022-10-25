@@ -6,6 +6,7 @@ import Detail from "./pages/Detail";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Pricing from "./pages/Pricing";
+import Affiliate from './pages/Affiliate';
 
 export default function Router () {
     return useRoutes([
@@ -19,6 +20,7 @@ export default function Router () {
                 { path: "/register", element: <Register /> },
                 { path: "/login", element: <Login /> },
                 { path: "/pricing", element: <Pricing /> },
+                { path: "/affiliate", element: <Affiliate /> },
             ]
         }
     ])

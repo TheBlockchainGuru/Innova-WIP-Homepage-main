@@ -121,3 +121,20 @@ export const invests = [
     '/images/invests/7.png',
     '/images/invests/8.png',
 ]
+
+export const affiliates = [{
+    img: '/images/sale.png',
+    title: '30$ Pay-Per-Sale for each client you refer & 20% discount',
+    content: 'Earn commissions every time a client pays for a subscription.',
+    href: '',
+},{
+    img: '/images/unlimit.png',
+    title: 'Unlimited commissions & 90 day-cookie',
+    content: 'No limitation on commissions, sky is the limit!',
+    href: '',
+},{
+    img: '/images/custom.png',
+    title: 'Custom dashboard to check your stats',
+    content: 'Access your statistics & earnings in real time.',
+    href: '',
+}]
