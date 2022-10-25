@@ -9,6 +9,7 @@ import Pricing from "./pages/Pricing";
 import Affiliate from './pages/Affiliate';
 import Offer from "./pages/Offer";
 import Checkout from './pages/Checkout';
+import Blog from "./pages/Blog";
 
 export default function Router () {
     return useRoutes([
@@ -22,9 +23,10 @@ export default function Router () {
                 { path: "/register", element: <Register /> },
                 { path: "/login", element: <Login /> },
                 { path: "/pricing", element: <Pricing /> },
-                { path: "/affiliate", element: <Affiliate /> },
+                { path: "/affiliation", element: <Affiliate /> },
                 { path: "/offer", element: <Offer /> },
                 { path: "/checkout", element: <Checkout /> },
+                { path: "/blog", element: <Blog /> },
             ]
         }
     ])

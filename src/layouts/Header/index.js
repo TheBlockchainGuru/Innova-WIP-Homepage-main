@@ -18,7 +18,7 @@ import {
     Divider
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 
 const pages = [{
@@ -48,6 +48,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 export default function Header () {
 
     const theme = useTheme();
+    const navigate = useNavigate();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
     const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -122,6 +123,7 @@ export default function Header () {
                         px: 4,
                         whiteSpace: 'nowrap'
                     }}
+                    onClick={() => navigate('/login')}
                 >
                     Sign in
                 </Button>
@@ -133,6 +135,7 @@ export default function Header () {
                         whiteSpace: 'nowrap',
                         background: 'linear-gradient(110.83deg, #AF59CD 12.82%, #0360B7 120.34%)'
                     }}
+                    onClick={() => navigate('/register')}
                 >Join us</Button>
                 </>
                 :
