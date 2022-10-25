@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     Box, 
     Button,
@@ -7,8 +8,13 @@ import {
     Stack,
     Typography
 } from '@mui/material';
+import PaymentComplete from '../../components/modals/PaymentComplete';
 
 export default function Checkout () {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+  
     return (
         <Box
             sx={{ 
@@ -105,6 +111,7 @@ export default function Checkout () {
                                 borderRadius: 2,
                                 py: 1.5
                             }}
+                            onClick={handleOpen}
                         >
                             Complete Purchase
                         </Button>
@@ -157,6 +164,11 @@ export default function Checkout () {
                     </Stack>
                 </Stack>
             </Stack>
+            <PaymentComplete 
+                open={open}
+                handleOpen={handleOpen}
+                handleClose={handleClose}
+            />
         </Box>
     );
 }

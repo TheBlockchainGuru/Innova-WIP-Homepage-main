@@ -6,10 +6,12 @@ import {
     useMediaQuery
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 import DealCard from  '../../components/cards/DealCard';
 
 export default function HotDeals () {
     const theme = useTheme();
+    const navigate = useNavigate();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
     return (
@@ -63,6 +65,7 @@ export default function HotDeals () {
                         lineHeight: 1,
                         borderRadius: 2.5
                     }}
+                    onClick={() => navigate('/explore')}
                 >View all deals</Button>
             </Stack>
         </Stack>

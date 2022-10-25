@@ -88,6 +88,10 @@ export default function Header () {
                     <Box 
                         component="img"
                         src="/images/logo.png" 
+                        onClick={() => navigate('/')}
+                        sx={{
+                            cursor: 'pointer'
+                        }}
                     />
                 </Stack>
                 <OutlinedInput 

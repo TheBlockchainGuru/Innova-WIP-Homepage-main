@@ -7,10 +7,12 @@ import {
     useMediaQuery
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard () {
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    const navigate = useNavigate();
 
     return (
         <Stack gap={12}
@@ -83,6 +85,7 @@ export default function Dashboard () {
                                 py: 1.5,
                                 borderRadius: 2.5
                             }}
+                            onClick={() => navigate('/explore')}
                         >Explore now</Button>
                     </Box>
                 </Stack>

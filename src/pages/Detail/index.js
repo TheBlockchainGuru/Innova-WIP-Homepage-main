@@ -15,6 +15,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import Alternatives from './Alternatives';
 import Features from './Features';
 import Information from './Information';
+import GetDeal from '../../components/modals/GetDeal';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -44,10 +45,13 @@ function a11yProps(index) {
 export default function Detail () {
     
   const [value, setValue] = useState(0);
+  const [open, setOpen] = useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
     return (
         <Box
             sx={{
@@ -123,6 +127,7 @@ export default function Detail () {
                                 borderRadius: 2,
                                 py: 1.5
                             }}
+                            onClick={handleOpen}
                         >
                             <Typography variant="body2">Get deal for $149</Typography>
                         </Button>
@@ -196,6 +201,10 @@ export default function Detail () {
                     <Alternatives />
                 </TabPanel>
                 </Box>
+                <GetDeal 
+                    open={open}
+                    handleClose={handleClose}
+                />
             </Box>
     )
 }
