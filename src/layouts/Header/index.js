@@ -20,6 +20,7 @@ import {
 import { useTheme } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
+import { categories } from '../../constants/content';
 
 const pages = [{
         title: 'Explore',
@@ -41,9 +42,6 @@ const pages = [{
         href: '/join'
     }
 ];
-
-const categories = ['No Code', 'Nft', 'Defi', 'Ico', 'Tools', 'Utility', 'Agency', 'Instant']
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export default function Header () {
 
@@ -215,16 +213,24 @@ export default function Header () {
                     }}
                 >Categories:</Typography>
                 {categories.map((item, key) =>
-                    <Typography
+                    <Link 
                         key={key}
-                        variant="caption"
-                        sx={{
-                            color: '#D4B4FF',
-                            fontFamily: 'Syne',
-                            fontWeight: 500,
-                            textTransform: 'uppercase'
+                        to={`/explore?c=${key}`} 
+                        style={{ 
+                            color: 'inherit',
+                            textDecoration: 'none'
                         }}
-                    >{item}</Typography>
+                    >
+                        <Typography
+                            variant="caption"
+                            sx={{
+                                color: '#D4B4FF',
+                                fontFamily: 'Syne',
+                                fontWeight: 500,
+                                textTransform: 'uppercase'
+                            }}
+                        >{item.title}</Typography>
+                    </Link>
                 )}
             </Stack>
 

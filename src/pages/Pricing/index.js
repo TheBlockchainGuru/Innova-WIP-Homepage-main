@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     Box, 
     Typography,
@@ -9,8 +10,14 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import TestimonialCard from '../../components/cards/TestimonialCard';
 import { invests } from '../../constants/content';
+// import Metamask from '../../components/modals/Metamask';
+import Fails from '../../components/modals/Fails';
 
 export default function Pricing () {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     return (
         <Box sx={{ pt: 20 }}>
             <Stack
@@ -145,6 +152,7 @@ export default function Pricing () {
                                     borderRadius: 2.5,
                                     py: 1.5
                                 }}
+                                onClick={handleOpen}
                             >Get Unlimited membership</Button>
                         </Box>
                     </Box>
@@ -271,6 +279,10 @@ export default function Pricing () {
                         }}
                     >View all deals</Button>
                 </Box>
+                <Fails 
+                    open={open}
+                    handleClose={handleClose}
+                />
             </Stack>
         </Box>
     )
