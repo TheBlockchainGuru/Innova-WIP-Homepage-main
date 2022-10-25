@@ -2,15 +2,11 @@ import {
     Box, 
     Typography,
     Stack,
-    Chip,
     Button
 } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CancelIcon from '@mui/icons-material/Cancel';
 import AffiliateCard from '../../components/cards/AffiliateCard';
-import TestimonialCard from '../../components/cards/TestimonialCard';
 import FeedbackCard from '../../components/cards/FeedbackCard';
-import { invests, affiliates, feedbacks } from '../../constants/content';
+import { affiliates, feedbacks } from '../../constants/content';
 
 export default function Affiliate () {
     return (
@@ -148,13 +144,4 @@ export default function Affiliate () {
             </Stack>
         </Box>
     )
-}
-
-const card = {
-    img: '/images/testimonial/1.png',
-    title: 'An amazing resource for startups',
-    content: 'AWS Activate\'s credits have been a HUGE help in these first couple of months since Accomplice\'s launch while I\'m working to build a solid base of users and MRR. It\'s one less thing for me to worry about for now, which for a solo founder is an absolute godsend.',
-    client: '/images/avatar/3.png',
-    clientName: 'Daniel',
-    position: 'Marketing Manager @Foxycart'
 }

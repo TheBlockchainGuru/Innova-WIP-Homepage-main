@@ -7,6 +7,8 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Pricing from "./pages/Pricing";
 import Affiliate from './pages/Affiliate';
+import Offer from "./pages/Offer";
+import Checkout from './pages/Checkout';
 
 export default function Router () {
     return useRoutes([
@@ -21,6 +23,8 @@ export default function Router () {
                 { path: "/login", element: <Login /> },
                 { path: "/pricing", element: <Pricing /> },
                 { path: "/affiliate", element: <Affiliate /> },
+                { path: "/offer", element: <Offer /> },
+                { path: "/checkout", element: <Checkout /> },
             ]
         }
     ])
