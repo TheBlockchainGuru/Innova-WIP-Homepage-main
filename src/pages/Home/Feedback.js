@@ -44,7 +44,7 @@ export default function Feedback () {
                     Praesent libero. 
                 </Typography>
             </Stack>
-            {/* <Box
+            <Box
                 sx={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(3, 1fr)',
@@ -55,7 +55,7 @@ export default function Feedback () {
             {feedbacks.map((item, key) =>
                 <FeedbackCard key={key} {...item} />
             )}
-            </Box> */}
+            </Box>
         </HomeContainer>
     )
 }

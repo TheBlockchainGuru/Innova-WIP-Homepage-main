@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
 import {
     MenuItem,
     useMediaQuery,
@@ -144,7 +145,20 @@ export default function Header () {
                 </IconButton>
                 }
                 <Menu
-                    sx={{ mt: '45px' }}
+                    sx={{
+                        '& .MuiPaper-root': {
+                            width: '100%',
+                            background: 'rgba(38, 38, 38, 0.84)',
+                            backdropFilter: 'blur(10px)',
+                            minHeight: '100vh',
+                            maxWidth: '100%',
+                            maxHeight: '100%',
+                            top: '0 !important',
+                            left: '0 !important',
+                            p: 4,
+                            px: matchUpSm ? 4 : 2
+                        }
+                    }}
                     id="menu-appbar"
                     anchorEl={anchorElUser}
                     anchorOrigin={{
@@ -159,28 +173,107 @@ export default function Header () {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                 >
-                    {pages.map((page, key) => (
+                    <Stack 
+                        flexDirection="row" 
+                        justifyContent="space-between"
+                        alignItems="center"
+                    >
+                        <Stack flexDirection="row">
+                            <Box 
+                                component="img"
+                                src="/images/logo.png"
+                            />
+                        </Stack>
+                        <CloseIcon 
+                            onClick={handleCloseUserMenu}
+                            sx={{ 
+                                fontSize: 32,
+                                cursor: 'pointer'
+                            }}
+                        />
+                    </Stack>
+                    <Stack
+                        flexDirection="row"
+                        sx={{
+                            pt: 16
+                        }}
+                    >
+                        <Stack flex={1} gap={5}>
+                        {['Explore', 'Pricing', 'Affiliation', 'Blog'].map((ele, key) => 
+                            <Typography 
+                                variant="subtitle1" 
+                                key={key}
+                                onClick={() => {handleCloseUserMenu(); navigate('/' + ele.toLowerCase())}}
+                                style={{
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                {ele}
+                            </Typography>
+                        )}
+                        </Stack>
+                        <Stack flex={1}>
+                            <Typography variant="subtitle1" sx={{ color: '#8E55FF' }}>Categories</Typography>
+                            <Stack flexDirection="row" gap={3}>
+                                <Divider 
+                                    orientation='vertical'
+                                    flexItem
+                                />
+                                <Stack gap={4}>
+                                {categories.map((item, key) =>
+                                    <Typography
+                                        key={key}
+                                        variant="caption"
+                                        onClick={() => {handleCloseUserMenu(); navigate('/explore?c=' + key)}}
+                                        sx={{
+                                            cursor: 'pointer',
+                                            fontWeight: 500,
+                                            textTransform: 'uppercase',
+                                            textDecoration: 'underline'
+                                        }}
+                                    >{item.title}</Typography>
+                                )}
+                                </Stack>
+                            </Stack>
+                        </Stack>
+
+                    </Stack>
+                    <Stack 
+                        flexDirection="row"
+                        gap={matchUpSm ? 4 : 2}
+                        sx={{
+                            pt: 25
+                        }}
+                    >
+                        <Button
+                            variant="outlined"
+                            fullWidth
+                            sx={{
+                                px: 4,
+                                whiteSpace: 'nowrap'
+                            }}
+                            onClick={() => {handleCloseUserMenu(); navigate('/login')}}
+                        >
+                            Sign in
+                        </Button>
+                        <Button
+                            variant="contained"
+                            fullWidth
+                            sx={{
+                                px: 4,
+                                whiteSpace: 'nowrap',
+                                background: 'linear-gradient(110.83deg, #AF59CD 12.82%, #0360B7 120.34%)'
+                            }}
+                            onClick={() => { handleCloseUserMenu(); navigate('/register')}}
+                        >Join us</Button>
+                    </Stack>
+                    {/* {pages.map((page, key) => (
                     <MenuItem key={key} onClick={() => handleCloseUserMenu}>
                         <Link to={page.href} style={{ textDecoration: 'none', color: 'inherit' }}>
                             <Typography textAlign="center">{page.title}</Typography>
                         </Link>
                     </MenuItem>
-                    ))}
-                    {/* {!matchUpMd ?
-                    <MenuItem onClick={handleCloseUserMenu}>
-                        <Typography
-                        onClick={handleClickOpen}
-                        sx={{ 
-                            cursor: 'pointer',
-                            display: {
-                                xs: 'none',
-                                md: 'block'
-                            }
-                        }}
-                        >Contact Us</Typography>
-                    </MenuItem>
-                    :   <></>
-                    } */}
+                    ))} */}
                 </Menu>
             </Toolbar>
             <Divider />

@@ -10,12 +10,17 @@ import Categories from './Categories';
 import Community from './Community';
 import Feedback from './Feedback';
 import Faq from './Faq';
+import HomePattern from '../../components/patterns/HomePattern';
 
 export default function Home () {
     return (
         <Box
             sx={{
                 pb: 25,
+                pt: 16,
+                zIndex: 1,
+                position: 'relative',
+                overflow: 'hidden'
             }}
         >
             <Stack
@@ -29,6 +34,7 @@ export default function Home () {
                 <Feedback />
                 <Faq />
             </Stack>
+            <HomePattern />
         </Box>
     );
 }
