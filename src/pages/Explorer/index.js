@@ -17,6 +17,7 @@ export default function Explorer () {
     const theme = useTheme();
     const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'));
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
     const navigate = useNavigate();
     const [ searchParams ] = useSearchParams();
 
@@ -54,13 +55,14 @@ export default function Explorer () {
                     <Typography variant="body2" color="text.secondary" 
                         sx={{ fontStyle: categories[c] ? 'italic' : 'inherit'}}>{categories[c] ? "No Deals Available" : "217 Deals Available"}</Typography>
                     <Stack
-                        flexDirection="row"
-                        gap={8}
+                        flexDirection={matchUpSm ? "row" : "column"}
+                        justifyContent={matchUpMd ? 'inherit' : 'space-between'}
+                        gap={matchUpMd ? 8 :  4}
                     >
                         <Stack
                             flexDirection={matchUpMd ? "row" : "column"}
                             alignItems={matchUpMd ? "center" : "flex-start"}
-                            gap={2}
+                            gap={matchUpMd ? 2 : 0.5}
                         >
                             <Typography variant="body2" color="text.secondary">Filter By:</Typography>
                             <OutlinedInput 
@@ -71,7 +73,7 @@ export default function Explorer () {
                         <Stack
                             flexDirection={matchUpMd ? "row" : "column"}
                             alignItems={matchUpMd ? "center" : "flex-start"}
-                            gap={2}
+                            gap={matchUpMd ? 2 : 0.5}
                         >
                             <Typography variant="body2" color="text.secondary">Order By:</Typography>
                             <OutlinedInput 
@@ -93,7 +95,7 @@ export default function Explorer () {
                             <Stack gap={5}>
                                 <Stack gap={2}>
                                     <Typography variant="h1">Sorry, No Result found ☹️</Typography>
-                                    <Typography variant="h5" color="text.secondary" sx={{ fontSize: 500 }}>We’re sorry what you’re looking for; please try another way</Typography>
+                                    <Typography variant="h5" color="text.secondary" sx={{ fontWeight: 500 }}>We’re sorry what you’re looking for; please try another way</Typography>
                                 </Stack>
                                 <Stack flexDirection="row">
                                     <Button variant="outlined" onClick={() => navigate('/')}>Back to Home</Button>
