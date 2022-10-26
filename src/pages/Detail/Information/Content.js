@@ -1,12 +1,14 @@
 import {
     Box,
     Stack,
-    Typography
+    Typography,
+    useMediaQuery
 } from '@mui/material';
 import TollIcon from '@mui/icons-material/Toll';
 import TestimonialCard from '../../../components/cards/TestimonialCard';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { features } from '../../../constants/content';
+import { useTheme } from '@mui/material/styles';
 
 const item = {
     img: '/images/testimonial/1.png',
@@ -16,14 +18,17 @@ const item = {
     clientName: 'Daniel'
 }
 export default function Content () {
+    const theme = useTheme();
+    const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
     return (
         <Box
             sx={{
-                px: 8,
-                pt: 10
+                px: matchUpMd ? 8 : 0,
+                pt: matchUpMd ? 10 : 2
             }}
         >
-            <Stack flexDirection="row" gap={4} sx={{ pb: 7 }}>
+            <Stack flexDirection={matchUpMd ? "row" : "column"} gap={4} sx={{ pb: 7 }}>
                 <Stack
                     flexDirection="row"
                     gap={2.5}
@@ -32,8 +37,8 @@ export default function Content () {
                         border: '1px solid rgba(230, 230, 230, 0.31)',
                         borderRadius: 2,
                         py: 2,
-                        px: 4,
-                        pr: 8
+                        px: matchUpSm ? 4 : 2,
+                        pr: matchUpSm ? 8 : 2
                     }}
                 >
                     <TollIcon />
@@ -50,8 +55,8 @@ export default function Content () {
                         border: '1px solid rgba(230, 230, 230, 0.31)',
                         borderRadius: 2,
                         py: 2,
-                        px: 4,
-                        pr: 8
+                        px: matchUpSm ? 4 : 2,
+                        pr: matchUpSm ? 8 : 2
                     }}
                 >
                     <TollIcon />
@@ -70,7 +75,7 @@ export default function Content () {
                 <Stack
                     gap={3}
                     sx={{
-                        px: 6,
+                        px: matchUpSm ? 6 : 2,
                         py: 5,
                         pb: 7
                     }}
@@ -135,7 +140,7 @@ export default function Content () {
                 <Box sx={{ 
                     pt: 5,
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(2, 1fr)',
+                    gridTemplateColumns: matchUpMd ? 'repeat(2, 1fr)': 'repeat(1, 1fr)',
                     rowGap: 6,
                     columnGap: 5
                 }}>

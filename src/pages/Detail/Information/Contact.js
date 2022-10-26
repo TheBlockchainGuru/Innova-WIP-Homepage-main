@@ -3,10 +3,14 @@ import {
     Box,
     Stack,
     Typography,
-    OutlinedInput 
+    OutlinedInput, 
+    useMediaQuery
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 export default function Contact () {
+    const theme = useTheme();
+    const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
     return (
         <Stack
             alignItems="center"
@@ -16,7 +20,7 @@ export default function Contact () {
                 boxShadow: '0px 1.45455px 36.3636px rgba(69, 42, 124, 0.1)',
                 backdropFilter: 'blur(42.5447px)',
                 py: 12,
-                px: 4 
+                px: matchUpSm ? 4 : 2 
             }}
         >
             <Stack gap={2}>

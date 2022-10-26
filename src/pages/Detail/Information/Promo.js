@@ -1,18 +1,24 @@
 import {
     Box,
     Stack,
-    Typography
+    Typography,
+    useMediaQuery
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import ActiaveCard from '../../../components/cards/ActivateCard';
 import { promos } from '../../../constants/content';
 
 export default function Promo () {
+    const theme = useTheme();
+    const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
+
     return (
         <Box
             sx={{
                 pt: 12,
                 pb: 16,
-                px: 7.5,
+                px: matchUpMd ? 7.5 : matchUpSm ? 4 : 2,
                 bgcolor: '#282433'
             }}
         >
@@ -20,8 +26,8 @@ export default function Promo () {
             <Box sx={{ 
                 pt: 5,
                 display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                rowGap: 4.5,
+                gridTemplateColumns: matchUpMd ? 'repeat(3, 1fr)' :  'repeat(1, 1fr)',
+                rowGap: matchUpSm ? 4.5 : 2,
                 columnGap: 5
             }}>
             {promos.map((ele,key) => 
@@ -33,7 +39,7 @@ export default function Promo () {
                         backdropFilter: 'blur(42.5447px)',
                         borderRadius: 3.5,
                         py: 1.5,
-                        px: 4.5
+                        px: matchUpSm ? 4.5 : 2
                     }}
                 >
                     <Typography>{ele}</Typography>
