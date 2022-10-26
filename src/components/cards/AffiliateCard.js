@@ -2,10 +2,14 @@ import {
     Box, 
     Button,
     Stack,
-    Typography
+    Typography,
+    useMediaQuery
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 export default function AffiliateCard ({img, title, content}) {
+    const theme = useTheme();
+    const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
     return (
         <Stack
             justifyContent="space-between"
@@ -15,7 +19,7 @@ export default function AffiliateCard ({img, title, content}) {
                 boxShadow: '0px 1.45455px 36.3636px rgba(69, 42, 124, 0.1)',
                 backdropFilter: 'blur(42.5447px)',
                 borderRadius: 3.5,
-                px: 4,
+                px: matchUpSm ? 4 : 2,
                 pt: 6,
                 pb: 5
             }}

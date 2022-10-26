@@ -33,9 +33,9 @@ export default function FeedbackCard ({img, content, client, clientName}) {
                 }}
             >
                 <Stack
-                    gap={3.5}
+                    gap={matchUpSm ? 3.5 : 1.5}
                     sx={{
-                        p: 4
+                        p: matchUpSm ? 4 : 2
                     }}
                 >
                     <Rating name="read-only" value={5} readOnly />
