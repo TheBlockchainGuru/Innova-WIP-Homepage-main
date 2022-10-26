@@ -4,8 +4,10 @@ import {
     Stack,
     Typography,
     Modal,
+    useMediaQuery,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '@mui/material/styles';
 
 const style = {
     position: 'absolute',
@@ -18,12 +20,15 @@ const style = {
     boxShadow: '0px 16px 40px rgba(175, 89, 206, 0.33)',
     borderRadius: 3.5,
     boxShadow: 24,
-    py: 7,
-    px: 6
 };
 
 export default function PaymentComplete ({open, handleClose}) {
     const navigate = useNavigate();
+    const theme = useTheme();
+    const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'));
+    const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
+    
     return ( 
         <Modal
             open={open}
@@ -38,7 +43,11 @@ export default function PaymentComplete ({open, handleClose}) {
             <Stack 
                 alignItems="center"
                 gap={4}
-                sx={style}
+                sx={{
+                    ...style, 
+                    py: matchUpMd ? 7 : 4,
+                    px: matchUpLg ? 6 : matchUpSm ? 4 : 2
+                }}
             >
                 <Stack flexDirection="row">
                     <Box component="img"
