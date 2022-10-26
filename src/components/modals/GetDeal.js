@@ -30,8 +30,9 @@ export default function GetDeal ({open, handleClose}) {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             sx={{
-                background: 'rgba(38, 38, 38, 0.51)',
+                background: 'rgba(38, 38, 38, 0.31)',
                 backdropFilter: 'blur(10px)',
+                px: 3
             }}
         >
             <Stack
@@ -42,6 +43,7 @@ export default function GetDeal ({open, handleClose}) {
                     gap={8}
                     sx={{
                         py: 7,
+                        px: 2,
                         background: 'rgba(100, 87, 142, 0.31)',
                         borderRadius: 2
                     }}
