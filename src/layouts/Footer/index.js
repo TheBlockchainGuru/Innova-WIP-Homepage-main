@@ -2,11 +2,20 @@ import {
     Box, 
     Stack,
     Typography,
-    Divider
+    Divider,
+    useMediaQuery
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import HomeContainer from '../../components/containers/HomeContainer';
 
 export default function Footer () {
+    const theme = useTheme();
+    const matchUpXl = useMediaQuery(theme.breakpoints.up('xl'));
+    const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'));
+    const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
+    
     return (
         <Box
             sx={{
@@ -15,89 +24,96 @@ export default function Footer () {
                 // backdropFilter: 'blur(42.5447px)',
             }}
         >
-            <Stack
-                flexDirection="row"
-                alignItems="center"
-                sx={{
-                    px: 14,
-                    py: 7
-                }}
-            >
-                <Stack 
-                    flex={1}
-                    gap={3}
-                >
-                    <Box 
-                        component="img"
-                        src="/images/logo.png"
-                        sx={{
-                            width: 54
-                        }}
-                    />
-                    <Typography
-                        variant="caption"
-                        sx={{
-                            textTransform: 'capitalize',
-                            maxWidth: 440
-                        }}
-                    >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Integer nec odio. 
-                        Praesent libero. 
-                        Sed cursus
-                    </Typography>
-                    <Stack
-                        flexDirection="row"
-                        alignItems="center"
-                        gap={3}
-                    >
-                        <Box 
-                            component="img"
-                            src="/images/linkedin.png" 
-                        />
-                        <Box 
-                            component="img"
-                            src="/images/twitter.png" 
-                        />
-                        <Box 
-                            component="img"
-                            src="/images/instagram.png" 
-                        />
-                    </Stack>
-                </Stack>
+            <HomeContainer>
                 <Stack
-                    flexDirection="row"
-                    flex={1}
-                    gap={12}
+                    flexDirection={matchUpMd ? "row" : "column"}
+                    alignItems="flex-start"
+                    gap={matchUpMd ? 0: 7.5}
+                    sx={{
+                        py: 7
+                    }}
                 >
-                    <Stack>
-                        <Typography sx={{ color: '#8E55FF', fontWeight: 800 }}>Marketplace</Typography>
-                        <Stack flexDirection="row" gap={3}>
-                            <Divider orientation='vertical' flexItem />
-                            <Stack gap={2} sx={{
-                                pt: 3,
-                                '& a': {
-                                    color: 'inherit'
-                                }
-                            }}>
-                                <Link>
-                                    <Typography>All Deals</Typography>
-                                </Link>
-                                <Link>
-                                    <Typography>Pricing</Typography>
-                                </Link>
-                                <Link>
-                                    <Typography>Affiliation</Typography>
-                                </Link>
+                    <Stack 
+                        flex={matchUpMd ? 1 : 'auto'}
+                        gap={3}
+                        sx={{ width: '100%' }}
+                    >
+                        <Stack
+                            flexDirection={matchUpSm ?"row" : "column"}
+                            justifyContent="space-between"
+                            gap={4}
+                        >
+                            <Box 
+                                component="img"
+                                src="/images/logo.png"
+                                sx={{
+                                    width: 54
+                                }}
+                            />
+                            
+                            <Stack
+                                flexDirection="row"
+                                alignItems="center"
+                                gap={3}
+                                sx={{
+                                    display: matchUpMd ? 'none' : 'flex'
+                                }}
+                            >
+                                <Box 
+                                    component="img"
+                                    src="/images/linkedin.png" 
+                                />
+                                <Box 
+                                    component="img"
+                                    src="/images/twitter.png" 
+                                />
+                                <Box 
+                                    component="img"
+                                    src="/images/instagram.png" 
+                                />
                             </Stack>
                         </Stack>
-                    </Stack>
-                    <Stack>
-                        <Typography sx={{ color: '#8E55FF', fontWeight: 800 }}>Company</Typography>
+                        <Typography
+                            variant="caption"
+                            sx={{
+                                textTransform: 'capitalize',
+                                maxWidth: 440
+                            }}
+                        >
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Integer nec odio. 
+                            Praesent libero. 
+                            Sed cursus
+                        </Typography>
                         <Stack
                             flexDirection="row"
-                            gap={8}
+                            alignItems="center"
+                            gap={3}
+                            sx={{
+                                display: matchUpMd ? 'flex' : 'none'
+                            }}
                         >
+                            <Box 
+                                component="img"
+                                src="/images/linkedin.png" 
+                            />
+                            <Box 
+                                component="img"
+                                src="/images/twitter.png" 
+                            />
+                            <Box 
+                                component="img"
+                                src="/images/instagram.png" 
+                            />
+                        </Stack>
+                    </Stack>
+                    <Stack
+                        flexDirection={matchUpSm ? "row" : "column"}
+                        flex={1}
+                        gap={matchUpXl ? 12 : 8}
+                    >
+                        <Stack>
+                            <Typography sx={{ color: '#8E55FF', fontWeight: 800 }}>Marketplace</Typography>
                             <Stack flexDirection="row" gap={3}>
                                 <Divider orientation='vertical' flexItem />
                                 <Stack gap={2} sx={{
@@ -107,35 +123,59 @@ export default function Footer () {
                                     }
                                 }}>
                                     <Link>
-                                        <Typography>Contact us</Typography>
+                                        <Typography>All Deals</Typography>
                                     </Link>
                                     <Link>
-                                        <Typography>About us</Typography>
+                                        <Typography>Pricing</Typography>
                                     </Link>
                                     <Link>
-                                        <Typography>Blogs</Typography>
+                                        <Typography>Affiliation</Typography>
                                     </Link>
                                 </Stack>
                             </Stack>
+                        </Stack>
+                        <Stack>
+                            <Typography sx={{ color: '#8E55FF', fontWeight: 800 }}>Company</Typography>
                             <Stack
-                                sx={{
-                                    pt: 3,
-                                    '& a': {
-                                        color: 'inherit'
-                                    }
-                                }}
+                                flexDirection={matchUpLg ? "row" : "column"}
+                                gap={matchUpXl ? 6 : 3}
                             >
-                                <Link>
-                                    <Typography>Terms & Conditions</Typography>
-                                </Link>
-                                <Link>
-                                    <Typography>Privacy Policy</Typography>
-                                </Link>
+                                <Stack flexDirection="row" gap={3}>
+                                    <Divider orientation='vertical' flexItem />
+                                    <Box 
+                                        sx={{
+                                            display: 'grid',
+                                            gridTemplateColumns: matchUpLg ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)',
+                                            rowGap: 2, 
+                                            columnGap: 3,
+                                            pt: 3,
+                                            '& a': {
+                                                color: 'inherit'
+                                            }
+                                        }}
+                                    >
+                                        <Link>
+                                            <Typography>Contact us</Typography>
+                                        </Link>
+                                        <Link>
+                                            <Typography>Terms & Conditions</Typography>
+                                        </Link>
+                                        <Link>
+                                            <Typography>About us</Typography>
+                                        </Link>
+                                        <Link>
+                                            <Typography>Privacy Policy</Typography>
+                                        </Link>
+                                        <Link>
+                                            <Typography>Blogs</Typography>
+                                        </Link>
+                                    </Box>
+                                </Stack>
                             </Stack>
                         </Stack>
                     </Stack>
                 </Stack>
-            </Stack>
+            </HomeContainer>
         </Box>
     );
 }

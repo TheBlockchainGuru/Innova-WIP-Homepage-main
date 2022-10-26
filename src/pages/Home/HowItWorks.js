@@ -7,19 +7,20 @@ import {
 import { useTheme } from '@mui/material/styles';
 import WorkCard from '../../components/cards/WorkCard';
 import { howItWorks } from '../../constants/content';
+import HomeContainer from '../../components/containers/HomeContainer';
 
 export default function HowItWorks () {
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'));
 
     return (
-        <Stack
-            alignItems="center"
-        >
+        <HomeContainer>
             <Typography
                 variant="h3"
                 sx={{
-                    lineHeight: '64px'
+                    lineHeight: '64px',
+                    textAlign: 'center'
                 }}
             >How it works</Typography>
             <Stack
@@ -48,13 +49,13 @@ export default function HowItWorks () {
                     gridTemplateColumns: matchUpMd 
                                         ? 'repeat(3, 1fr)' 
                                         : 'repeat(1, 1fr)',
-                    gap: 6,
+                    gap: matchUpLg ? 6 : 4,
                 }}
             >
             {howItWorks.map((item, key) =>
                 <WorkCard key={key} {...item} />
             )}
             </Box>
-        </Stack>
+        </HomeContainer>
     )
 }

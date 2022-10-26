@@ -2,7 +2,6 @@ import React from 'react';
 import {
     Box, 
     Stack,
-    Typography
 } from '@mui/material';
 import Dashboard from './Dashboard';
 import HowItWorks from './HowItWorks';
@@ -14,20 +13,22 @@ import Faq from './Faq';
 
 export default function Home () {
     return (
-        <Stack
-            gap={20}
+        <Box
             sx={{
-                px: 14,
-                pb: 25
+                pb: 25,
             }}
         >
-            <Dashboard />
-            <HowItWorks />
-            <HotDeals />
-            <Categories />
-            <Community />
-            <Feedback />
-            <Faq />
-        </Stack>
+            <Stack
+                gap={20}
+            >
+                <Dashboard />
+                <HowItWorks />
+                <HotDeals />
+                <Categories />
+                <Community />
+                <Feedback />
+                <Faq />
+            </Stack>
+        </Box>
     );
 }

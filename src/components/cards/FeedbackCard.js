@@ -3,14 +3,21 @@ import {
     Box, 
     Stack, 
     Typography, 
-    Rating
+    Rating,
+    useMediaQuery
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 export default function FeedbackCard ({img, content, client, clientName}) {
+    const theme = useTheme();
+    const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'));
+    const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
+
     return (
         <Box
             sx={{
-                height: 460,
+                height: matchUpLg ? 460 : matchUpMd ? 420 : matchUpSm ? 360 : 211,
                 backgroundImage: `url(${img})`,
                 backgroundSize: '100% 100%',
                 borderRadius: 3.5

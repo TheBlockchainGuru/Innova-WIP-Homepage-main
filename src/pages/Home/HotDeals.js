@@ -8,20 +8,21 @@ import {
 import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import DealCard from  '../../components/cards/DealCard';
+import HomeContainer from '../../components/containers/HomeContainer';
 
 export default function HotDeals () {
     const theme = useTheme();
     const navigate = useNavigate();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'));
 
     return (
-        <Stack
-            alignItems="center"
-        >
+        <HomeContainer>
             <Typography
                 variant="h3"
                 sx={{
-                    lineHeight: '64px'
+                    lineHeight: '64px',
+                    textAlign: 'center'
                 }}
             >Hot Deals</Typography>
             <Stack
@@ -47,9 +48,9 @@ export default function HotDeals () {
             <Box
                 sx={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)',
-                    rowGap: 6,
-                    columnGap: 8
+                    gridTemplateColumns: matchUpLg ? 'repeat(3, 1fr)' : matchUpMd ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)',
+                    rowGap: matchUpLg ? 6 : 3,
+                    columnGap: matchUpLg ? 8 : 4
                 }}
             >
             {[1,2,3,4,5,6].map((item, key) =>
@@ -68,6 +69,6 @@ export default function HotDeals () {
                     onClick={() => navigate('/explore')}
                 >View all deals</Button>
             </Stack>
-        </Stack>
+        </HomeContainer>
     )
 }

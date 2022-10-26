@@ -3,9 +3,13 @@ import {
     Chip,
     Stack,
     Typography,
+    useMediaQuery,
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 export default function DealCard () {
+    const theme = useTheme();
+    const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
     return (
         <Box
             sx={{
@@ -14,8 +18,8 @@ export default function DealCard () {
                 backdropFilter: 'blur(42.5447px)',
                 borderRadius: 3.5,
                 border: `4px solid #594F6D`,
-                pt: 3.5,
-                pb: 3,
+                pt: matchUpSm ? 3.5 : 2,
+                pb: matchUpSm ? 3 : 2,
                 overflow: 'hidden'
             }}
         >
@@ -24,10 +28,10 @@ export default function DealCard () {
             >
                 <Stack
                     flexDirection="row"
-                    alignItems="center"
-                    gap={2.5}
+                    alignItems="flex-start"
+                    gap={matchUpSm ? 2.5 : 1.5}
                     sx={{
-                        px: 3.5
+                        px: matchUpSm ? 3.5 : 2
                     }}
                 >
                     <Stack
@@ -51,7 +55,7 @@ export default function DealCard () {
                     </Stack>
                 </Stack>
                 <Box sx={{
-                    px: 3.5
+                    px: matchUpSm ? 3.5 : 2
                 }}>
                     <Typography 
                         variant="h6" 
@@ -90,7 +94,7 @@ export default function DealCard () {
                 flexDirection="row"
                 justifyContent="flex-end"
                 sx={{
-                    px: 3,
+                    px: matchUpSm ? 3 : 2,
                     pt: 2
                 }}
             >

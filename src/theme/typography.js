@@ -27,62 +27,62 @@ const typography = {
         fontFamily: 'Syne',
         fontWeight: 700,
         lineHeight: 1,
-        ...responsiveFontSizes({ sm: 36, md: 63, lg: 63, xl: 63 }),
+        ...responsiveFontSizes({ sm: 48, md: 63, lg: 63, xl: 63 }),
     },
     h2: {
         fontSize: pxToRem(30),
         fontFamily: 'Syne',
         fontWeight: 700,
-        ...responsiveFontSizes({ sm: 30, md: 48, lg: 48, xl: 48 }),
+        ...responsiveFontSizes({ sm: 40, md: 48, lg: 48, xl: 48 }),
     },
     h3: {
         fontSize: pxToRem(28),
         fontFamily: 'Syne',
         fontWeight: 700,
-        ...responsiveFontSizes({ sm: 28, md: 40, lg: 40, xl: 40 }),
+        ...responsiveFontSizes({ sm: 34, md: 40, lg: 40, xl: 40 }),
     },
     h4: {
         fontSize: pxToRem(22),
         fontFamily: 'Syne',
         fontWeight: 600,
-        ...responsiveFontSizes({ sm: 22, md: 32, lg: 32, xl: 32 }),
+        ...responsiveFontSizes({ sm: 27, md: 32, lg: 32, xl: 32 }),
     },
     h5: {
         fontSize: pxToRem(20),
         fontWeight: 700,
-        ...responsiveFontSizes({ sm: 20, md: 26, lg: 26, xl: 26 }),
+        ...responsiveFontSizes({ sm: 24, md: 26, lg: 26, xl: 26 }),
     },
     h6: {
         fontSize: pxToRem(20),
         fontWeight: 900,
-        ...responsiveFontSizes({ sm: 20, md: 22, lg: 22, xl: 22 }),
+        ...responsiveFontSizes({ sm: 21, md: 22, lg: 22, xl: 22 }),
     },
     subtitle1: {
         fontSize: pxToRem(16),
         fontWeight: 700,
         letterSpacing: 0.64,
-        ...responsiveFontSizes({ sm: 16, md: 20, lg: 20, xl: 20 })
+        ...responsiveFontSizes({ sm: 18, md: 20, lg: 20, xl: 20 })
     },
     subtitle2: {
         fontSize: pxToRem(20),
         fontWeight: 700,
-        ...responsiveFontSizes({ sm: 20, md: 24, lg: 24, xl: 24 })
+        ...responsiveFontSizes({ sm: 22, md: 24, lg: 24, xl: 24 })
     },
     body1: {
         fontSize: pxToRem(14),
-        ...responsiveFontSizes({ sm: 14, md: 16, lg: 16, xl: 16 })
+        ...responsiveFontSizes({ sm: 15, md: 16, lg: 16, xl: 16 })
     },
     body2: {
         fontSize: pxToRem(14),
         fontWeight: 500,
         lineHeight: 1.44,
         textTransform: 'capitalize',
-        ...responsiveFontSizes({ sm: 14, md: 18, lg: 18, xl: 18 })
+        ...responsiveFontSizes({ sm: 16, md: 18, lg: 18, xl: 18 })
     },
     caption: {
         fontSize: pxToRem(10),
         fontWeight: 400,
-        ...responsiveFontSizes({ sm: 10, md: 12, lg: 12, xl: 12 })
+        ...responsiveFontSizes({ sm: 11, md: 12, lg: 12, xl: 12 })
     },
     overline: {
         fontSize: pxToRem(6),

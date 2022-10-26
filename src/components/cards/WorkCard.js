@@ -36,14 +36,21 @@ export default function WorkCard ({img, title, content}) {
                 <Box flex="0 0 25%" sx={{ pt: 4 }}>
                     <Typography variant="subtitle2">{title}</Typography>
                 </Box>
-                <Box flex="0 0 35%" 
+                <Stack
+                    alignItems="center"
+                    flex="0 0 35%" 
                     sx={{ 
                         pt: 2, 
-                        px: 7.5,
+                        px: 2,
                     }}
                 >
-                    <Typography sx={{ textAlign: 'center' }}>{content}</Typography> 
-                </Box>
+                    <Typography 
+                        sx={{ 
+                            textAlign: 'center',
+                            maxWidth: 256
+                        }}
+                    >{content}</Typography> 
+                </Stack>
             </Stack>
         </Box>
     )
