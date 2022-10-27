@@ -140,7 +140,6 @@ export default function Dashboard () {
                                 src="/images/box1.png" 
                                 sx={{
                                     maxWidth: '100%',
-                                    animation: `${move1} 10s linear infinite`,
                                 }}
                             />
                         </Stack>
@@ -184,7 +183,6 @@ export default function Dashboard () {
                                 src="/images/box1.png" 
                                 sx={{
                                     maxWidth: '100%',
-                                    animation: `${move1} 10s linear infinite`,
                                 }}
                             />
                         </Stack>

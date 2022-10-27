@@ -22,8 +22,10 @@ export default function DealCard () {
                 border: `4px solid #594F6D`,
                 pt: matchUpSm ? 3.5 : 2,
                 pb: matchUpSm ? 3 : 2,
-                overflow: 'hidden'
+                overflow: 'hidden',
+                cursor: 'pointer',
             }}
+            onClick={() => navigate('/detail')}
         >
             <Stack
                 gap={5}
@@ -103,15 +105,10 @@ export default function DealCard () {
                 <Chip 
                     label="Agency"
                     variant="outlined"
-                    clickable
-                    onClick={() => navigate('/detail')}
                     sx={{
                         bgcolor: '#fff',
                         color: '#000',
                         fontWeight: 700,
-                        '&:hover': {
-                            color: '#fff'
-                        }
                     }}
                 />
             </Stack>

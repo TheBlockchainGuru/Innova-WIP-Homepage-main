@@ -84,7 +84,7 @@ export default function Register () {
                             </Stack>
                         </Stack>
                     </Stack>
-                    <Box flex={1}>
+                    <Stack flexDirection="row" flex={1} justifyContent="flex-end">
                         <Box
                             sx={{
                                 maxWidth: matchUpMd ? 576 : '100%',
@@ -185,7 +185,7 @@ export default function Register () {
                                 </Box>
                             </Stack>
                         </Box>
-                    </Box>
+                    </Stack>
                     
                     <Box
                         sx={{

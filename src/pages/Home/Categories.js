@@ -61,7 +61,7 @@ export default function Categories () {
                 }}
             >
             {categories.map((item, key) =>
-                <CategoryCard key={key} {...item} />
+                <CategoryCard key={key} {...item} index={key} />
             )}
             </Box>
         </HomeContainer>

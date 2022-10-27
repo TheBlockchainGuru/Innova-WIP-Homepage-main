@@ -3,8 +3,10 @@ import {
     Stack,
     Typography
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
-export default function CategoryCard ({img, title}) {
+export default function CategoryCard ({img, title, index}) {
+    const navigate = useNavigate();
     return (
         <Stack
             justifyContent="flex-end"
@@ -14,8 +16,10 @@ export default function CategoryCard ({img, title}) {
                 height: 185,
                 background: 'linear-gradient(128.07deg, rgba(28, 59, 84, 0.75) 7.62%, rgba(61, 60, 69, 0.75) 96.23%), url(Rectangle 15.png)',
                 borderRadius: 3.5,
-                p: 0.375
+                p: 0.375,
+                cursor: 'pointer'
             }}
+            onClick={() => navigate('/explore?c=' + index)}
         >
             <Box
                 sx={{

@@ -38,7 +38,7 @@ export default function Home () {
                 <Feedback />
                 <Faq />
             </Stack>
-            <HomePattern />
+            {/* <HomePattern /> */}
         </Box>
     );
 }
