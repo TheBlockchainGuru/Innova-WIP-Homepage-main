@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import HomeContainer from '../../components/containers/HomeContainer';
 import WarningIcon from '@mui/icons-material/Warning';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import GoogleIcon from '@mui/icons-material/Google';
 
 export default function Login () {
     const theme = useTheme();
@@ -96,6 +97,16 @@ export default function Login () {
                                 <Stack flexDirection="row" sx={{ pt: 4 }}>
                                     <Button
                                         variant="outlined"
+                                        startIcon={
+                                            <Stack flexDirection="row"
+                                                sx={{
+                                                    bgcolor: '#fff',
+                                                    p: .5,
+                                                    borderRadius: 1
+                                                }}
+                                            >
+                                                <GoogleIcon fontSize="small" sx={{ color: '#442950' }}/>
+                                            </Stack>}
                                     >
                                         <Typography variant="caption">Sign in with Google</Typography>
                                     </Button>
@@ -126,6 +137,7 @@ export default function Login () {
                                         <OutlinedInput 
                                             fullWidth 
                                             size="small"
+                                            type="password"
                                             endAdornment={
                                                 <RemoveRedEyeIcon sx={{ color: 'rgba(255, 255, 255, 0.63)' }} />
                                             }

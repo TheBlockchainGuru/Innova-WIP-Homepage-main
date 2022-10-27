@@ -6,14 +6,80 @@ import {
     Typography,
     useMediaQuery
 } from '@mui/material';
+import { keyframes } from '@emotion/react';
 import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import HomeContainer from '../../components/containers/HomeContainer';
+import BoxCard from '../../components/cards/BoxCard';
 
 export default function Dashboard () {
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
     const navigate = useNavigate();
+    const move5 = keyframes`
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-30px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    `;
+    const move4 = keyframes`
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-30px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    `;
+    const move3 = keyframes`
+        0% {
+            transform: translate(0, 0);
+        }
+        25% {
+            transform: translate(-30px, -30px);
+        }
+        50% {
+            transform: translate(0, 0);
+        }
+        75% {
+            transform: translate(30px, -30px);
+        }
+
+        100% {
+            transform: translate(0, 0);
+        }
+    `;
+    
+    const move2 = keyframes`
+        0% {
+            transform: translateX(0);
+        }
+        50% {
+            transform: translateX(-30px);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    `;
+    
+    const move1 = keyframes`
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-30px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    `;
 
     return (
         <HomeContainer>
@@ -59,15 +125,21 @@ export default function Dashboard () {
                                 display: {
                                     xs: 'flex',
                                     sm: 'flex',
-                                    md: 'none'
-                                }
+                                    md: 'none',
+                                
+                                },
+                                position: 'relative'
                             }}
                         >
-                            <Box 
+                            <BoxCard top={0} right={100} move={move3} />
+                            <BoxCard left={-100} bottom={100} move={move2} />
+                            <BoxCard right={0} bottom={0} move={move5} />
+                            <Box    
                                 component="img" 
-                                src="/images/box.svg" 
+                                src="/images/box.png" 
                                 sx={{
-                                    maxWidth: '100%'
+                                    maxWidth: '100%',
+                                    animation: `${move1} 10s linear infinite`,
                                 }}
                             />
                         </Stack>
@@ -96,17 +168,22 @@ export default function Dashboard () {
                         flexDirection="row"
                         justifyContent="flex-end"
                         sx={{
+                            position: 'relative',
                             display: {
                                 xs: 'none', md: 'flex' 
                             }
                         }}
                     >
+                        <BoxCard top={0} right={100} move={move3} />
+                        <BoxCard left={-100} bottom={100} move={move2} />
+                        <BoxCard right={0} bottom={0} move={move5} />
                         <Stack flexDirection="row">
                             <Box 
                                 component="img" 
                                 src="/images/box.png" 
                                 sx={{
-                                    maxWidth: '100%'
+                                    maxWidth: '100%',
+                                    animation: `${move1} 10s linear infinite`,
                                 }}
                             />
                         </Stack>

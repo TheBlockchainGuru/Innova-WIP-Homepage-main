@@ -15,6 +15,7 @@ import { clients, invests } from '../../constants/content';
 import ClientCard from '../../components/cards/ClientCard';
 import WarningIcon from '@mui/icons-material/Warning';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import GoogleIcon from '@mui/icons-material/Google';
 
 export default function Register () {
     const theme = useTheme();
@@ -110,8 +111,19 @@ export default function Register () {
                                     >Connect your account with Google (business account preferred) or Linkedin:</Typography>
                                 </Stack>
                                 <Stack flexDirection="row" sx={{ pt: 4 }}>
+                                    
                                     <Button
                                         variant="outlined"
+                                        startIcon={
+                                            <Stack flexDirection="row"
+                                                sx={{
+                                                    bgcolor: '#fff',
+                                                    p: .5,
+                                                    borderRadius: 1
+                                                }}
+                                            >
+                                                <GoogleIcon fontSize="small" sx={{ color: '#442950' }}/>
+                                            </Stack>}
                                     >
                                         <Typography variant="caption">Sign in with Google</Typography>
                                     </Button>
@@ -141,6 +153,7 @@ export default function Register () {
                                         <Typography variant="caption">Password (6 characters minimum)*</Typography>
                                         <OutlinedInput 
                                             fullWidth 
+                                            type="password"
                                             size="small"
                                             endAdornment={
                                                 <RemoveRedEyeIcon sx={{ color: 'rgba(255, 255, 255, 0.63)' }} />

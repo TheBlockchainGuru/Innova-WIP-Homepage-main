@@ -85,8 +85,10 @@ const typography = {
         ...responsiveFontSizes({ sm: 11, md: 12, lg: 12, xl: 12 })
     },
     overline: {
-        fontSize: pxToRem(6),
-        ...responsiveFontSizes({ sm: 6, md: 8, lg: 9, xl: 10 })
+        fontSize: pxToRem(12),
+        fontWeight: 700,
+        textTransform: '',
+        ...responsiveFontSizes({ sm: 14, md: 16, lg: 18, xl: 22 })
     },
     button: {
         fontSize: pxToRem(16),

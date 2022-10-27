@@ -39,12 +39,17 @@ export default function Faq() {
                         }}
                     >Looking for Answers?</Typography>
                 </Stack>
-                <Stack gap={3} sx={{ maxWidth: 740 }}>
+                <Stack gap={3} sx={{ maxWidth: 740,
+                    '& >div.Mui-expanded': {
+                        background: 'linear-gradient(110.83deg, rgba(175, 89, 205, 0.25) 12.82%, rgba(3, 96, 183, 0.25) 120.34%)',
+                        boxShadow: '0px 16px 40px rgba(175, 89, 206, 0.33)'
+                    }
+                 }}>
                 {faqs.map((item, key) => 
                     <Accordion key={key}
                         sx={{
                             border: '4px solid #5f596d',
-                            background: 'linear-gradient(116.41deg, rgba(103, 103, 103, 0.5) -56.52%, rgba(45, 37, 58, 0.5) 130.2%)',
+                            background: '#2b2833',
                             borderRadius: '14px !important',
                             px: matchUpMd ? 4.5 : 0,
                             py: matchUpMd ? 2 : 0,

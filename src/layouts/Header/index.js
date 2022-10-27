@@ -92,10 +92,11 @@ export default function Header () {
                     placeholder="Search by deal..."
                     sx={{
                         gap: 2,
-                        fontFamily: 'Epilogue',
-                        fontStyle: 'italic',
                         fontWeight: 300,
                         bgcolor: '#222129',
+                        '& input::placeholder': {
+                            fontStyle: 'italic',
+                        }
                     }}
                 />
                 { matchUpMd ? 
@@ -106,10 +107,17 @@ export default function Header () {
                         to={`/${item.toLowerCase()}`}
                         style={{
                             textDecoration: 'none',
-                            color: 'inherit'
                         }}
                     >
-                        <Typography>{item}</Typography>
+                        <Typography
+                            color="text.secondary"
+                            sx={{
+                                // color: '#F1F2F2',
+                                '&:hover': {
+                                    color: '#fff'
+                                }
+                            }}
+                        >{item}</Typography>
                     </Link>
                 )}
                 <Button
@@ -308,10 +316,15 @@ export default function Header () {
                         <Typography
                             variant="caption"
                             sx={{
+                                display: 'block',
                                 color: '#D4B4FF',
                                 fontFamily: 'Syne',
                                 fontWeight: 500,
-                                textTransform: 'uppercase'
+                                textTransform: 'uppercase',
+                                '&:hover': {
+                                    transform: 'scaleX(1.1)',
+                                    color:  theme.palette.text.secondary
+                                }
                             }}
                         >{item.title}</Typography>
                     </Link>

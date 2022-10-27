@@ -17,9 +17,12 @@ export default function FeedbackCard ({img, content, client, clientName}) {
     return (
         <Box
             sx={{
-                height: matchUpLg ? 460 : matchUpMd ? 420 : matchUpSm ? 360 : 211,
+                height: matchUpLg ? 460 : matchUpMd ? 420 : matchUpSm ? 300 : 211,
+                // height: 460,
+                mx: matchUpMd ? 0 : matchUpSm ? 1 : 1,
                 backgroundImage: `url(${img})`,
-                backgroundSize: '100% 100%',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
                 borderRadius: 3.5
             }}
         >
@@ -35,13 +38,13 @@ export default function FeedbackCard ({img, content, client, clientName}) {
                 <Stack
                     gap={matchUpSm ? 3.5 : 1.5}
                     sx={{
-                        p: matchUpSm ? 4 : 2
+                        p: matchUpMd ? 4 : 2 
                     }}
                 >
                     <Rating name="read-only" value={5} readOnly />
-                    <Typography variant="h6" 
+                    <Typography variant="overline" 
                         sx={{ 
-                            fontWeight: 700,
+                            lineHeight: '155%',
                             maxWidth: 330,
                         }}
                     >{content}</Typography>

@@ -17,7 +17,8 @@ export default function TestimonialCard ({img, title, content, client, clientNam
             sx={{
                 height: 460,
                 backgroundImage: `url(${img})`,
-                backgroundSize: '100% 100%',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
                 borderRadius: 3.5
             }}
         >
