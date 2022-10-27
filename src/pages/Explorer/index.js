@@ -5,7 +5,8 @@ import {
     Stack,
     Typography,
     OutlinedInput,
-    useMediaQuery
+    useMediaQuery,
+    Select
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import DealCard from '../../components/cards/DealCard';
@@ -65,10 +66,17 @@ export default function Explorer () {
                             gap={matchUpMd ? 2 : 0.5}
                         >
                             <Typography variant="body2" color="text.secondary">Filter By:</Typography>
-                            <OutlinedInput 
+                            {/* <OutlinedInput 
                                 placeholder='All Deals'
                                 size="small"
-                            />
+                            /> */}
+                            <Select
+                                native
+                                size="small"
+                                // label="All Deals"
+                            >
+                                <option>All Deals</option>
+                            </Select>
                         </Stack>
                         <Stack
                             flexDirection={matchUpMd ? "row" : "column"}
@@ -76,10 +84,11 @@ export default function Explorer () {
                             gap={matchUpMd ? 2 : 0.5}
                         >
                             <Typography variant="body2" color="text.secondary">Order By:</Typography>
-                            <OutlinedInput 
-                                placeholder='Most popular first'
+                            <Select native
                                 size="small"
-                            />
+                            >
+                                <option value="">Most popular first</option>
+                            </Select>
                         </Stack>
                     </Stack>
                 </Stack>

@@ -5,11 +5,14 @@ import {
     Checkbox,
     Divider,
     OutlinedInput, 
+    Select, 
     Stack,
     Typography,
-    useMediaQuery
+    useMediaQuery,
+    Radio
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
 import HomeContainer from '../../components/containers/HomeContainer';
 import PaymentComplete from '../../components/modals/PaymentComplete';
 
@@ -19,6 +22,11 @@ export default function Checkout () {
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
     const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
     const [open, setOpen] = React.useState(false);
+    const [selectedValue, setSelectedValue] = React.useState('a');
+  
+    const handleChange = (event) => {
+      setSelectedValue(event.target.value);
+    };
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
   
@@ -71,7 +79,14 @@ export default function Checkout () {
                                         alignItems="flex-start" 
                                         gap={2.5}
                                     >
-                                        <Checkbox sx={{  p: 0 }} />
+                                        <Radio
+                                            checked={selectedValue === 'a'}
+                                            onChange={handleChange}
+                                            value="a"
+                                            name="radio-buttons"
+                                            inputProps={{ 'aria-label': 'A' }}
+                                            sx={{ p: 0 }}
+                                        />
                                         <Stack gap={.5}>
                                             <Typography variant="body2" sx={{ color: '#C090FF', fontWeight: 700 }}>Pay only for the AWS Activate deal</Typography>
                                             <Typography variant="caption">Pay only 149$ to get access to the AWS Activate deal</Typography>
@@ -89,7 +104,14 @@ export default function Checkout () {
                                         alignItems="flex-start" 
                                         gap={2.5}
                                     >
-                                        <Checkbox sx={{  p: 0 }} />
+                                        <Radio
+                                            checked={selectedValue === 'b'}
+                                            onChange={handleChange}
+                                            value="b"
+                                            name="radio-buttons"
+                                            inputProps={{ 'aria-label': 'B' }}
+                                            sx={{ p: 0 }}
+                                        />
                                         <Stack gap={.5}>
                                             <Typography variant="body2" sx={{ color: '#C090FF', fontWeight: 700 }}>Unlimited access to all deals</Typography>
                                             <Typography variant="caption">Get access to all our deals including AWS Activate with our Unlimited subscription</Typography>
@@ -105,7 +127,12 @@ export default function Checkout () {
                                 </Stack>
                                 <Stack gap={.5}>
                                     <Typography variant="caption">Country*</Typography>
-                                    <OutlinedInput size="small" placeholder="United States" />
+                                    <Select
+                                        native
+                                        size="small"
+                                    >
+                                        <option>United States</option>
+                                    </Select>
                                 </Stack>
                             </Stack>
                         </Stack>
@@ -117,10 +144,16 @@ export default function Checkout () {
                             <Stack gap={.5}>
                                 <Typography variant="caption">Credit Card*</Typography>
                                 <OutlinedInput 
-                                    size="small"
                                     startAdornment={
-                                        <></>
+                                        <CreditCardIcon sx={{ color: theme.palette.text.secondary, mr: 1 }} />
                                     }
+                                    endAdornment={
+                                        <Stack flexDirection="row" alignItems="center" gap={4}>
+                                            <Typography sx={{ whiteSpace: 'nowrap', lineHeight: 1 }}>MM / YY</Typography>
+                                            <Typography color="text.secondary">CVC</Typography>
+                                        </Stack>
+                                    }
+                                    size="small"
                                     placeholder="Card Number"
                                 />
                             </Stack>

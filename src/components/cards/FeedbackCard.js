@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-export default function FeedbackCard ({img, content, client, clientName}) {
+export default function FeedbackCard ({img, content, client, clientName, atLg = false}) {
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
     const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'));
@@ -19,7 +19,7 @@ export default function FeedbackCard ({img, content, client, clientName}) {
             sx={{
                 height: matchUpLg ? 460 : matchUpMd ? 420 : matchUpSm ? 300 : 211,
                 // height: 460,
-                mx: matchUpMd ? 0 : matchUpSm ? 1 : 1,
+                mx: matchUpMd ? (atLg ? 2 : 0) : matchUpSm ? 1 : 1,
                 backgroundImage: `url(${img})`,
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',

@@ -10,6 +10,18 @@ import AffiliateCard from '../../components/cards/AffiliateCard';
 import FeedbackCard from '../../components/cards/FeedbackCard';
 import HomeContainer from '../../components/containers/HomeContainer';
 import { affiliates, feedbacks } from '../../constants/content';
+import Slider from 'react-slick';
+
+const settings = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToScroll: 1,
+    centerPadding: 100,
+    rtl: true
+
+}
 
 export default function Affiliate () {
     const theme = useTheme();
@@ -89,10 +101,41 @@ export default function Affiliate () {
                 </Box>
                 <Box flex={1}
                     sx={{
-                        overflow: 'hidden'
+                        maxWidth: '100%',
+                        overflowX: 'hidden',
+                        pb: 8,
+                        '& .slick-dots': {
+                            // left: 0,
+                            bottom: -64,
+                            '& li': {
+                                mx: 2,
+                                '& button': {
+                                    p: 0,
+                                    width: 12,
+                                    height: 12,
+                                    bgcolor: 'transparent',
+                                    border: '1px solid #fff',
+                                    borderRadius: '50%',
+                                    '&::before': {
+                                        display: 'none'
+                                    }
+                                }
+                            },
+                            '& .slick-active': {
+                                mx: 2,
+                                '& button': {
+                                    bgcolor: '#fff',
+                                }
+                            }
+                        }
                     }}
                 >
-                    <Box
+                    <Slider 
+                        {...settings} 
+                        slidesToShow={matchUpMd ? 2 : 1} 
+                        centerMode={matchUpLg ? true : matchUpMd ? false : matchUpSm ? true : false}
+                    >
+                    {/* <Box
                         sx={{
                             display: 'grid',
                             width: 1280,
@@ -100,39 +143,39 @@ export default function Affiliate () {
                             gap: 5,
                             position: 'relative',
                         }}
-                    >
-                    {feedbacks.map((item, key) =>
-                        <FeedbackCard 
-                            key={key}
-                            {...item}
-                        />
-                    )}
-                    </Box>
-                    <Stack
+                    > */}
+                        {feedbacks.map((item, key) =>
+                            <FeedbackCard 
+                                key={key}
+                                atLg={true}
+                                {...item}
+                            />
+                        )}
+                    </Slider>
+                    {/* </Box> */}
+                    {/* <Stack
                         flexDirection="row"
                         justifyContent="flex-end"
                         gap={3.5}
                         sx={{ pr: 14, pt: 8 }}
                     >
-                        {/* <Stack flexDirection="row"> */}
                         <Box 
                             component='img'
                             src="/images/arrow-left.png"
                         />
-                        {/* </Stack> */}
                         <Box 
                             component='img'
                             src="/images/arrow-right.png"
                         />
                         <Box />
-                    </Stack>
+                    </Stack> */}
                 </Box>
             </Stack>
             <HomeContainer>
                 <Stack
                     justifyContent="center"
                     sx={{
-                        pt: matchUpMd ? 28 : 14,
+                        pt: matchUpMd ? 20 : 6,
                     }}
                     gap={3.5}
                 >
