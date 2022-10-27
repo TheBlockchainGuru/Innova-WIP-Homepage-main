@@ -6,8 +6,10 @@ import {
     useMediaQuery,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 export default function DealCard () {
+    const navigate = useNavigate();
     const theme = useTheme();
     const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
     return (
@@ -102,6 +104,7 @@ export default function DealCard () {
                     label="Agency"
                     variant="outlined"
                     clickable
+                    onClick={() => navigate('/detail')}
                     sx={{
                         bgcolor: '#fff',
                         color: '#000',

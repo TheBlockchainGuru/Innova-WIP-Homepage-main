@@ -290,6 +290,7 @@ export default function Header () {
                 alignItems="center"
                 justifyContent="space-between"
                 sx={{
+                    bgcolor: 'rgba(0,0,0,0.26)',
                     display: {
                         md: 'flex',
                         xs: 'none'

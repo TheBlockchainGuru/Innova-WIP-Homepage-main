@@ -131,6 +131,15 @@ export default function Content () {
                 <Typography>
                 Interested in AWS Activate? Get $5,000 in AWS credits for 2 years on AWS Activate with our promo code and save up to $5000.</Typography>
             </Stack>
+            <Stack>
+                <Box
+                    component="video"
+                    src="https://www.youtube.com/watch?v=axaqGUxqYBk"
+                    sx={{
+                        pt: 8,
+                    }}
+                ></Box>
+            </Stack>
             <Box
                 sx={{
                     pt: 10

@@ -32,7 +32,7 @@ export default function Dashboard () {
             transform: translateY(0);
         }
         50% {
-            transform: translateY(-30px);
+            transform: translateY(30px);
         }
         100% {
             transform: translateY(0);
@@ -62,7 +62,7 @@ export default function Dashboard () {
             transform: translateX(0);
         }
         50% {
-            transform: translateX(-30px);
+            transform: translateX(30px);
         }
         100% {
             transform: translateX(0);
@@ -90,6 +90,7 @@ export default function Dashboard () {
             >
                 <Stack
                     flexDirection={matchUpMd ? "row" : "column"}
+                    gap={matchUpMd ? 7 : 4}
                 >
                     <Stack
                         flex={1}
@@ -133,10 +134,10 @@ export default function Dashboard () {
                         >
                             <BoxCard top={0} right={100} move={move3} />
                             <BoxCard left={-100} bottom={100} move={move2} />
-                            <BoxCard right={0} bottom={0} move={move5} />
+                            <BoxCard right={0} bottom={0} move={move4} />
                             <Box    
                                 component="img" 
-                                src="/images/box.png" 
+                                src="/images/box1.png" 
                                 sx={{
                                     maxWidth: '100%',
                                     animation: `${move1} 10s linear infinite`,
@@ -180,7 +181,7 @@ export default function Dashboard () {
                         <Stack flexDirection="row">
                             <Box 
                                 component="img" 
-                                src="/images/box.png" 
+                                src="/images/box1.png" 
                                 sx={{
                                     maxWidth: '100%',
                                     animation: `${move1} 10s linear infinite`,

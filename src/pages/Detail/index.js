@@ -195,22 +195,22 @@ export default function Detail () {
                     </Box>
                 </Stack>
                 <Box sx={{ pt: 10 }}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                             <Tab label="Information" {...a11yProps(0)} />
                             <Tab label="Features" {...a11yProps(1)} />
                             <Tab label="Alternatives" {...a11yProps(2)} />
                         </Tabs>
                     </Box>
-                    <TabPanel value={value} index={0}>
+                    <TabPanel value={value} index={0}> */}
                         <Information />
-                    </TabPanel>
+                    {/* </TabPanel>
                     <TabPanel value={value} index={1}>
                         <Features />
                     </TabPanel>
                     <TabPanel value={value} index={2}>
                         <Alternatives />
-                    </TabPanel>
+                    </TabPanel> */}
                 </Box>
                 <GetDeal 
                     open={open}
