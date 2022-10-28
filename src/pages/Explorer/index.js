@@ -13,6 +13,7 @@ import DealCard from '../../components/cards/DealCard';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { categories } from '../../constants/content';
 import HomeContainer from '../../components/containers/HomeContainer';
+import ExplorerPattern from '../../components/patterns/ExplorerPattern';
 
 export default function Explorer () {
     const theme = useTheme();
@@ -25,111 +26,118 @@ export default function Explorer () {
     const c = searchParams.get('c');
     
     return (
-        <HomeContainer>
-            <Box
-                sx={{
-                    pt: 6,
-                    pb: 24
-                }}
-            >
-                <Stack flexDirection="row">
-                    <Box
-                        component="img"
-                        src="/images/spark.png"
-                        sx={{
-                            position: 'relative',
-                            left: -20
-                        }}
-                    />
-                </Stack>
-                <Typography variant="h1" sx={{ textTransform: 'uppercase' }}>{categories[c] ? categories[c].title : "All Deals"}</Typography>
-                <Stack
-                    flexDirection={matchUpMd ? "row" : "column"} 
-                    justifyContent="space-between"
-                    alignItems={matchUpMd ? "center": "flex-start"}
-                    gap={5}
-                    sx={{
-                        pt: matchUpMd ? 3.5 : 1.5,
-                        pb: 11
-                    }}
-                >
-                    <Typography variant="body2" color="text.secondary" 
-                        sx={{ fontStyle: categories[c] ? 'italic' : 'inherit'}}>{categories[c] ? "No Deals Available" : "217 Deals Available"}</Typography>
-                    <Stack
-                        flexDirection={matchUpSm ? "row" : "column"}
-                        justifyContent={matchUpMd ? 'inherit' : 'space-between'}
-                        gap={matchUpMd ? 8 :  4}
-                    >
-                        <Stack
-                            flexDirection={matchUpMd ? "row" : "column"}
-                            alignItems={matchUpMd ? "center" : "flex-start"}
-                            gap={matchUpMd ? 2 : 0.5}
-                        >
-                            <Typography variant="body2" color="text.secondary">Filter By:</Typography>
-                            {/* <OutlinedInput 
-                                placeholder='All Deals'
-                                size="small"
-                            /> */}
-                            <Select
-                                native
-                                size="small"
-                                // label="All Deals"
-                            >
-                                <option>All Deals</option>
-                            </Select>
-                        </Stack>
-                        <Stack
-                            flexDirection={matchUpMd ? "row" : "column"}
-                            alignItems={matchUpMd ? "center" : "flex-start"}
-                            gap={matchUpMd ? 2 : 0.5}
-                        >
-                            <Typography variant="body2" color="text.secondary">Order By:</Typography>
-                            <Select native
-                                size="small"
-                            >
-                                <option value="">Most popular first</option>
-                            </Select>
-                        </Stack>
-                    </Stack>
-                </Stack>
-                    {categories[c] ?
-
-                        <Stack
-                            alignItems="center"
-                            justifyContent="center"
-                            sx={{
-                                py: 30
-                            }}
-                        >
-                            <Stack gap={5}>
-                                <Stack gap={2}>
-                                    <Typography variant="h1">Sorry, No Result found ☹️</Typography>
-                                    <Typography variant="h5" color="text.secondary" sx={{ fontWeight: 500 }}>We’re sorry what you’re looking for; please try another way</Typography>
-                                </Stack>
-                                <Stack flexDirection="row">
-                                    <Button variant="outlined" onClick={() => navigate('/')}>Back to Home</Button>
-                                </Stack>
-                            </Stack>
-                        </Stack>
-                    :
+        <Box sx={{ 
+                position: 'relative', 
+                overflow: 'hidden' 
+            }}
+        >
+            <HomeContainer>
                 <Box
                     sx={{
-                        display: 'grid',
-                        gridTemplateColumns: matchUpLg 
-                                            ? 'repeat(3, 1fr)' 
-                                            : matchUpMd 
-                                            ? 'repeat(2, 1fr)' 
-                                            : 'repeat(1, 1fr)',
-                        rowGap: matchUpLg ? 6 : 3,
-                        columnGap: matchUpLg ? 8 : 4
+                        pt: 6,
+                        pb: 24,
                     }}
                 >
-                    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map((item, key) =>
-                        <DealCard key={key} {...item} />
-                    )}
+                    <Stack flexDirection="row">
+                        <Box
+                            component="img"
+                            src="/images/spark.png"
+                            sx={{
+                                position: 'relative',
+                                left: -20
+                            }}
+                        />
+                    </Stack>
+                    <Typography variant="h1" sx={{ textTransform: 'uppercase' }}>{categories[c] ? categories[c].title : "All Deals"}</Typography>
+                    <Stack
+                        flexDirection={matchUpMd ? "row" : "column"} 
+                        justifyContent="space-between"
+                        alignItems={matchUpMd ? "center": "flex-start"}
+                        gap={5}
+                        sx={{
+                            pt: matchUpMd ? 3.5 : 1.5,
+                            pb: 11
+                        }}
+                    >
+                        <Typography variant="body2" color="text.secondary" 
+                            sx={{ fontStyle: categories[c] ? 'italic' : 'inherit'}}>{categories[c] ? "No Deals Available" : "217 Deals Available"}</Typography>
+                        <Stack
+                            flexDirection={matchUpSm ? "row" : "column"}
+                            justifyContent={matchUpMd ? 'inherit' : 'space-between'}
+                            gap={matchUpMd ? 8 :  4}
+                        >
+                            <Stack
+                                flexDirection={matchUpMd ? "row" : "column"}
+                                alignItems={matchUpMd ? "center" : "flex-start"}
+                                gap={matchUpMd ? 2 : 0.5}
+                            >
+                                <Typography variant="body2" color="text.secondary">Filter By:</Typography>
+                                {/* <OutlinedInput 
+                                    placeholder='All Deals'
+                                    size="small"
+                                /> */}
+                                <Select
+                                    native
+                                    size="small"
+                                    // label="All Deals"
+                                >
+                                    <option>All Deals</option>
+                                </Select>
+                            </Stack>
+                            <Stack
+                                flexDirection={matchUpMd ? "row" : "column"}
+                                alignItems={matchUpMd ? "center" : "flex-start"}
+                                gap={matchUpMd ? 2 : 0.5}
+                            >
+                                <Typography variant="body2" color="text.secondary">Order By:</Typography>
+                                <Select native
+                                    size="small"
+                                >
+                                    <option value="">Most popular first</option>
+                                </Select>
+                            </Stack>
+                        </Stack>
+                    </Stack>
+                        {categories[c] ?
+
+                            <Stack
+                                alignItems="center"
+                                justifyContent="center"
+                                sx={{
+                                    py: 30
+                                }}
+                            >
+                                <Stack gap={5}>
+                                    <Stack gap={2}>
+                                        <Typography variant="h1">Sorry, No Result found ☹️</Typography>
+                                        <Typography variant="h5" color="text.secondary" sx={{ fontWeight: 500 }}>We’re sorry what you’re looking for; please try another way</Typography>
+                                    </Stack>
+                                    <Stack flexDirection="row">
+                                        <Button variant="outlined" onClick={() => navigate('/')}>Back to Home</Button>
+                                    </Stack>
+                                </Stack>
+                            </Stack>
+                        :
+                    <Box
+                        sx={{
+                            display: 'grid',
+                            gridTemplateColumns: matchUpLg 
+                                                ? 'repeat(3, 1fr)' 
+                                                : matchUpMd 
+                                                ? 'repeat(2, 1fr)' 
+                                                : 'repeat(1, 1fr)',
+                            rowGap: matchUpLg ? 6 : 3,
+                            columnGap: matchUpLg ? 8 : 4
+                        }}
+                    >
+                        {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map((item, key) =>
+                            <DealCard key={key} {...item} />
+                        )}
+                    </Box>
+                    }
                 </Box>
-                }
-            </Box>
-        </HomeContainer>
+            </HomeContainer>
+            <ExplorerPattern />
+        </Box>
     );
 }

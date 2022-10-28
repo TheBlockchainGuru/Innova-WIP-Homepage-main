@@ -15,6 +15,7 @@ import TestimonialCard from '../../components/cards/TestimonialCard';
 import { invests } from '../../constants/content';
 // import Metamask from '../../components/modals/Metamask';
 import Fails from '../../components/modals/Fails';
+import PricingPattern from '../../components/patterns/PricingPattern';
 
 export default function Pricing () {
     const theme = useTheme();
@@ -25,7 +26,7 @@ export default function Pricing () {
     const handleClose = () => setOpen(false);
 
     return (
-        <Box sx={{ pt: 20 }}>
+        <Box sx={{ pt: 20, position: 'relative', overflow: 'hidden' }}>
             <HomeContainer>
                 <Stack
                     alignItems="center"
@@ -302,6 +303,7 @@ export default function Pricing () {
                     />
                 </Stack>
             </HomeContainer>
+            <PricingPattern />
         </Box>
     )
 }

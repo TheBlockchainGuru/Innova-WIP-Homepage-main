@@ -17,8 +17,10 @@ export default function Footer () {
     const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
     
     return (
+    <Box sx={{ position: 'relative', overflow: 'hidden' }}>
         <Box
             sx={{
+                // background: 
                 background: 'linear-gradient(116.41deg, rgba(103, 103, 103, 0.22) -56.52%, rgba(45, 37, 58, 0.22) 130.2%)',
                 // boxShadow: '0px 1.45455px 36.3636px rgba(69, 42, 124, 0.1)',
                 // backdropFilter: 'blur(42.5447px)',
@@ -177,5 +179,22 @@ export default function Footer () {
                 </Stack>
             </HomeContainer>
         </Box>
+    
+        <Box
+        sx={{
+            position: 'absolute',
+            left: '-1.8%',
+            right: '67.59%',
+            top: '0%',
+            bottom: '-12.81%',
+            background: 'url(/images/patterns/home/bubble/1.png)',
+            backgroundRepeat: 'no-repeat',
+            backgroundBlendMode: 'screen',
+            mixBlendMode: 'screen',
+            opacity: 0.65,
+            filter: 'blur(12.5px)'
+        }}
+        ></Box>
+    </Box>
     );
 }

@@ -12,6 +12,7 @@ import HomeContainer from '../../components/containers/HomeContainer';
 import { affiliates, feedbacks } from '../../constants/content';
 import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
+import PricingPattern from '../../components/patterns/PricingPattern';
 
 const settings = {
     dots: true,
@@ -32,7 +33,7 @@ export default function Affiliate () {
     const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'));
 
     return (
-        <Box sx={{ pt: 20, pb: 23 }}>
+        <Box sx={{ pt: 20, pb: 23, position: 'relative', overflow: 'hidden' }}>
             <HomeContainer>
                 <Stack
                     alignItems="center"
@@ -209,6 +210,7 @@ export default function Affiliate () {
                     </Stack>
                 </Stack>
             </HomeContainer>
+            <PricingPattern />
         </Box>
     )
 }

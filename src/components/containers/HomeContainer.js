@@ -10,6 +10,7 @@ export default function HomeContainer ({children}) {
             sx={{
                 px: matchUpSm ? 5 : 2,
                 position: 'relative',
+                zIndex: 2
             }}
         >
             <Box

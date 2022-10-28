@@ -15,6 +15,7 @@ import BoxCard from '../../components/cards/BoxCard';
 export default function Dashboard () {
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'));
     const navigate = useNavigate();
     const move5 = keyframes`
         0% {
@@ -90,7 +91,7 @@ export default function Dashboard () {
             >
                 <Stack
                     flexDirection={matchUpMd ? "row" : "column"}
-                    gap={matchUpMd ? 7 : 4}
+                    gap={matchUpLg ? 15 : matchUpMd ? 10 : 4}
                 >
                     <Stack
                         flex={1}
@@ -117,11 +118,12 @@ export default function Dashboard () {
                                     }
                                 }}
                             >
-                                Build in <span>web3&nbsp;</span> with lowest cost. 
+                                Build in <span>web3&nbsp;</span> <br /> with lowest cost. 
                             </Typography>
                         </Stack>
                         
                         <Stack flexDirection="row"
+                        justifyContent={matchUpMd ? "flex-end" : "center"}
                             sx={{
                                 display: {
                                     xs: 'flex',
