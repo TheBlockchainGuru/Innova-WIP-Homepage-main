@@ -6,9 +6,11 @@ import {
     useMediaQuery
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 export default function AffiliateCard ({img, title, content}) {
     const theme = useTheme();
+    const navigate = useNavigate();
     const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
     return (
         <Stack
@@ -48,6 +50,7 @@ export default function AffiliateCard ({img, title, content}) {
                         py: 1.5,
                         lineHeight: 1
                     }}
+                    onClick={() => navigate('/offer')}
                 >
                     Learn more
                 </Button>

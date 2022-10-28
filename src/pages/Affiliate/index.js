@@ -11,6 +11,7 @@ import FeedbackCard from '../../components/cards/FeedbackCard';
 import HomeContainer from '../../components/containers/HomeContainer';
 import { affiliates, feedbacks } from '../../constants/content';
 import Slider from 'react-slick';
+import { useNavigate } from 'react-router-dom';
 
 const settings = {
     dots: true,
@@ -25,6 +26,7 @@ const settings = {
 
 export default function Affiliate () {
     const theme = useTheme();
+    const navigate = useNavigate();
     const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
     const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'));
@@ -49,6 +51,7 @@ export default function Affiliate () {
                         >Give your community a 20% discount and get paid $30 every time you send us a customer!</Typography>
                         <Button
                             fullWidth
+                            onClick={() => navigate('/checkout')}
                             sx={{
                                 background: 'linear-gradient(110.83deg, #AF59CD 12.82%, #0360B7 120.34%)',
                                 borderRadius: 2.5,

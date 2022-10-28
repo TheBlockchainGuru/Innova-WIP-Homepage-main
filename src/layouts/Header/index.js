@@ -302,7 +302,8 @@ export default function Header () {
                 <Typography
                     variant="caption"
                     sx={{
-                        color: '#FFFFFF'
+                        color: '#FFFFFF',
+                        fontWeight: 500
                     }}
                 >Categories:</Typography>
                 {categories.map((item, key) =>
