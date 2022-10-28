@@ -74,7 +74,7 @@ export default function Fails ({open, handleClose}) {
                     </Stack>
                     <Stack alignItems="center" gap={2} sx={{ maxWidth: 350 }}>
                         <Typography variant="h5" sx={{ 
-                            fontFamily: 'Syne', 
+                            fontFamily: 'Roboto', 
                             fontWeight: 600, 
                             textAlign: 'center',
                         }}>

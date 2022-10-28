@@ -140,7 +140,7 @@ export default function Checkout () {
                             <Divider />
                         </Box>
                         <Stack gap={4}>
-                            <Typography variant="h5" sx={{ fontFamily: 'Syne', fontWeight: 600 }}>Payment Details</Typography>
+                            <Typography variant="h5" sx={{ fontFamily: 'Roboto', fontWeight: 600 }}>Payment Details</Typography>
                             <Stack gap={.5}>
                                 <Typography variant="caption">Credit Card*</Typography>
                                 <OutlinedInput 
@@ -190,7 +190,7 @@ export default function Checkout () {
                             py: matchUpMd ? 6 : 4
                         }}
                     >
-                        <Typography variant="h4" sx={{ fontFamily: 'Syne', fontWeight: 600 }}>Order Summary</Typography>
+                        <Typography variant="h4" sx={{ fontFamily: 'Roboto', fontWeight: 600 }}>Order Summary</Typography>
                         <Stack gap={1} sx={{ pt: 6 }}>
                             <Stack 
                                 flexDirection="row" 

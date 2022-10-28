@@ -109,7 +109,7 @@ export default function Detail () {
                             variant="h5"
                             sx={{
                                 maxWidth: 515,
-                                fontFamily: 'Syne'
+                                fontFamily: 'Roboto'
                             }}
                         >Efficiently develop, deploy and maintain high-performance and scalable applications.</Typography>
                     </Stack>

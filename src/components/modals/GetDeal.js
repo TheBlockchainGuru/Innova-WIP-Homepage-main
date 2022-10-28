@@ -50,7 +50,7 @@ export default function GetDeal ({open, handleClose}) {
                     
                 >
                     <Typography variant="h5" sx={{ 
-                        fontFamily: 'Syne', 
+                        fontFamily: 'Roboto', 
                         fontWeight: 600, 
                         textAlign: 'center',
                         maxWidth: 360

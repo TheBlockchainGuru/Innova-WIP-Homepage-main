@@ -320,7 +320,7 @@ export default function Header () {
                             sx={{
                                 display: 'block',
                                 color: '#D4B4FF',
-                                fontFamily: 'Syne',
+                                fontFamily: 'Roboto',
                                 fontWeight: 500,
                                 textTransform: 'uppercase',
                                 '&:hover': {

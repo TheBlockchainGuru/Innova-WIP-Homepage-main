@@ -54,7 +54,7 @@ export default function PaymentComplete ({open, handleClose}) {
                         // sx={{ width: 64, height: 64 }}
                         src="/images/check-big.png" />
                 </Stack>
-                <Typography variant="h5" sx={{ fontFamily: 'Syne', fontWeight: 600, textAlign: 'center' }}>
+                <Typography variant="h5" sx={{ fontFamily: 'Roboto', fontWeight: 600, textAlign: 'center' }}>
                     Payment Complete!
                 </Typography>
                 <Typography variant="caption" sx={{ textAlign: 'center'}}>
