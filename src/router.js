@@ -19,7 +19,7 @@ export default function Router () {
             children: [
                 { path: "/", element: <Home /> },
                 { path: "/explore", element: <Explore /> },
-                { path: "/detail", element: <Detail /> },
+                { path: "/detail:detailId", element: <Detail /> },
                 { path: "/register", element: <Register /> },
                 { path: "/login", element: <Login /> },
                 { path: "/pricing", element: <Pricing /> },

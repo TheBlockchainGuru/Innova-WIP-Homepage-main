@@ -7,10 +7,54 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import DealCard from  '../../components/cards/DealCard';
 import HomeContainer from '../../components/containers/HomeContainer';
 
+const endpoint = "http://localhost:3000/graphql/";
+const DEAL_QUERY = `
+{
+    deals(filter:{}, page:0, perPage: 6, sortField: createdAt, sortOrder:Desc) {
+        _id
+        amountSaved
+        categories {
+            _id
+            name
+        }
+        categoriesIds
+        companyDesc
+        companyLogoURL
+        companyName
+        createdAt
+        descriptionInHTML
+        externalLink
+        name
+        promoText
+        redeemedAmount
+        requirements
+        smallDesc
+        updatedAt
+        videoUrl
+    }
+}`
+
 export default function HotDeals () {
+    const  { data, isLoading, error } = useQuery("deals", () => {
+        return fetch(endpoint, {
+            method: 'POST',
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({ query: DEAL_QUERY })
+        })
+        .then((response) => {
+            if (response.status >= 400) {
+                throw new Error("Error fetching data");
+            } else {
+                return response.json();
+            }
+        })
+        .then((data) => data.data)
+    })
+
     const theme = useTheme();
     const navigate = useNavigate();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
@@ -53,9 +97,13 @@ export default function HotDeals () {
                     columnGap: matchUpLg ? 8 : 4
                 }}
             >
-            {[1,2,3,4,5,6].map((item, key) =>
-                <DealCard key={key} {...item} />
-            )}
+                {data && data.deals && data.deals.length
+                ?
+                    data.deals.map((element, key) => 
+                        <DealCard key={key} {...element} />
+                    )
+                :   <></>
+                }
             </Box>
             <Stack flexDirection="row" justifyContent="center" sx={{ pt: 10 }}>
                 <Button 

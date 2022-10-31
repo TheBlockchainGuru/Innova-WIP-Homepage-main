@@ -8,7 +8,7 @@ import {
 import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 
-export default function DealCard () {
+export default function DealCard (props) {
     const navigate = useNavigate();
     const theme = useTheme();
     const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
@@ -24,6 +24,11 @@ export default function DealCard () {
                 pb: matchUpSm ? 3 : 2,
                 overflow: 'hidden',
                 cursor: 'pointer',
+                '&:hover': {
+                    background: 'linear-gradient(110.83deg, rgba(175, 89, 205, 0.25) 12.82%, rgba(3, 96, 183, 0.25) 120.34%)',
+                    boxShadow: '0px 1.45455px 36.3636px rgba(69, 42, 124, 0.1)',
+                    backdropFilter: 'blur(42.5447px)',
+                }
             }}
             onClick={() => navigate('/detail')}
         >
@@ -54,8 +59,8 @@ export default function DealCard () {
                         />
                     </Stack>
                     <Stack>
-                        <Typography variant="h5">AWS Activate</Typography>
-                        <Typography variant="caption" color="text.secondary">Amazon's cloud services platform</Typography>
+                        <Typography variant="h5">{props.companyName}</Typography>
+                        <Typography variant="caption" color="text.secondary">{props.companyDesc}</Typography>
                     </Stack>
                 </Stack>
                 <Box sx={{

@@ -5,13 +5,13 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-export default function CategoryCard ({img, title, index}) {
+export default function CategoryCard (props) {
     const navigate = useNavigate();
     return (
         <Stack
             justifyContent="flex-end"
             sx={{
-                backgroundImage: `url(${img})`,
+                backgroundImage: `url(${props.imageUrl})`,
                 backgroundSize: '100% 100%',
                 height: 185,
                 background: 'linear-gradient(128.07deg, rgba(28, 59, 84, 0.75) 7.62%, rgba(61, 60, 69, 0.75) 96.23%), url(Rectangle 15.png)',
@@ -19,7 +19,7 @@ export default function CategoryCard ({img, title, index}) {
                 p: 0.375,
                 cursor: 'pointer'
             }}
-            onClick={() => navigate('/explore?c=' + index)}
+            onClick={() => navigate('/explore?c=' + props.index)}
         >
             <Box
                 sx={{
@@ -39,7 +39,7 @@ export default function CategoryCard ({img, title, index}) {
                         textAlign: 'center',
                         textTransform: 'uppercase'
                     }}
-                >{title}</Typography>
+                >{props.name}</Typography>
             </Box>
         </Stack>
     )

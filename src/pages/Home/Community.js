@@ -12,6 +12,10 @@ import HomeContainer from "../../components/containers/HomeContainer";
 export default function Community () {
     const theme = useTheme();
     const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
+    const handle = (e) => {
+        e.preventDefault();
+        console.log('hello')
+    }
     return (
         <Stack
             sx={{
@@ -35,11 +39,12 @@ export default function Community () {
                             Praesent libero. 
                         </Typography>
                     </Stack>
-                    <Stack gap={3}>
+                    <Stack gap={3} component="form" onSubmit={handle}>
                         <OutlinedInput 
                             endAdornment={
                                 <Stack flexDirection="row" sx={{ p: 1, display: matchUpSm ? 'flex': 'none' }}>
                                     <Button variant="outlined" 
+                                        type="submit"
                                         sx={{ 
                                             background: 'linear-gradient(110.83deg, #AF59CD 12.82%, #0360B7 120.34%)',
                                             borderRadius: 2.5,
@@ -50,6 +55,8 @@ export default function Community () {
                                 </Stack>
                             }
                             placeholder="Your Email"
+                            required
+                            type="email"
                             size="small"
                             sx={{
                                 background: 'linear-gradient(116.41deg, rgba(0, 0, 0, 0.5) -56.52%, rgba(29, 22, 43, 0.5) 130.2%)',

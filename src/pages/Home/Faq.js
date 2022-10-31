@@ -9,11 +9,43 @@ import {
     useMediaQuery
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { useQuery } from 'react-query';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { faqs } from '../../constants/content';
 import HomeContainer from '../../components/containers/HomeContainer';
 
+const endPoint = 'http://localhost:3000/graphql/';
+const FAQ_QUERY = `
+{
+    categories(filter:{}, page:0, perPage: 8, sortField: createdAt, sortOrder:Desc) {
+        _id
+        createdAt
+        deleted {
+            adminId
+            date
+        }
+        imageUrl
+        name
+        updatedAt
+    }
+}
+`
 export default function Faq() {
+    const  { data, isLoading, error } = useQuery("faqs", () => {
+        return fetch(endPoint, {
+            method: 'POST',
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({ query: FAQ_QUERY })
+        })
+        .then((response) => {
+            if (response.status >= 400) {
+                throw new Error("Error fetching data");
+            } else {
+                return response.json();
+            }
+        })
+        .then((data) => data.data)
+    })
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 

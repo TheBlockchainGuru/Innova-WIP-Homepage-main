@@ -6,11 +6,44 @@ import {
     useMediaQuery
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { useQuery } from 'react-query';
 import CategoryCard from '../../components/cards/CategoryCard';
 import HomeContainer from '../../components/containers/HomeContainer';
-import { categories } from '../../constants/content';
+// import { categories } from '../../constants/content';
 
+const endPoint = 'http://localhost:3000/graphql/';
+const CATEGORY_QUERY = `
+{
+    categories(filter:{}, page:0, perPage: 8, sortField: createdAt, sortOrder:Desc) {
+        _id
+        createdAt
+        deleted {
+            adminId
+            date
+        }
+        imageUrl
+        name
+        updatedAt
+    }
+}
+`
 export default function Categories () {
+    const  { data, isLoading, error } = useQuery("categories", () => {
+        return fetch(endPoint, {
+            method: 'POST',
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({ query: CATEGORY_QUERY })
+        })
+        .then((response) => {
+            if (response.status >= 400) {
+                throw new Error("Error fetching data");
+            } else {
+                return response.json();
+            }
+        })
+        .then((data) => data.data)
+    })
+
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
     const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'));
@@ -60,9 +93,13 @@ export default function Categories () {
                     columnGap: matchUpLg ? 8 : 4
                 }}
             >
-            {categories.map((item, key) =>
-                <CategoryCard key={key} {...item} index={key} />
-            )}
+                {data && data.categories && data.categories.length
+                ?
+                    data.categories.map((category, key) => 
+                        <CategoryCard key={key} {...category} index={key} />
+                    )
+                :   <></>
+                }
             </Box>
         </HomeContainer>
     )
