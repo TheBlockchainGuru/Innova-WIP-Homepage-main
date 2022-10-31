@@ -121,15 +121,16 @@ export default function Content ({data}) {
                 sx={{ pt: 12 }}
             >
                 <Typography
-                    variant="h5" sx={{ color: '#C69BFF' }}>General information about AWS Activate</Typography>
-                <Typography>
+                    variant="h5" sx={{ color: '#C69BFF' }}>General information about {data && data.deals && data.deals.length  ? data.deals[0].companyName : ''}</Typography>
+                <Typography>{data && data.deals && data.deals.length  ? data.deals[0].companyDesc : ''}</Typography>
+                {/* <Typography>
                     Amazon Web Services (AWS) is Amazon's cloud platform where business of all sizes have access to 100+ services to develop and deploy high-performance web and mobile applications: storage, IT security, databases, analytics, tools for developers, IoT, machine learning, AI and many more.
                 </Typography>
                 <Typography>
                     AWS offers a robust and scalable infrastructure that meets your needs at every stage of your startup's life. Scalability is no longer a concern and you only pay for the services you use.
                 </Typography>
                 <Typography>
-                Interested in AWS Activate? Get $5,000 in AWS credits for 2 years on AWS Activate with our promo code and save up to $5000.</Typography>
+                Interested in AWS Activate? Get $5,000 in AWS credits for 2 years on AWS Activate with our promo code and save up to $5000.</Typography> */}
             </Stack>
             <Stack>
                 <Box

@@ -126,7 +126,8 @@ export default function Detail () {
                                 <Stack flexDirection="row">
                                     <Box 
                                         component="img"
-                                        src="/images/aws.png"
+                                        // src="/images/aws.png"
+                                        src={data && data.deals && data.deals.length  ? data.deals[0].companyLogoURL : ''}
                                     />
                                 </Stack>
                                 <Stack>

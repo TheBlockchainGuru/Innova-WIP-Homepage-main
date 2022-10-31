@@ -34,49 +34,58 @@ export default function DealCard (props) {
         >
             <Stack
                 gap={5}
+                justifyContent="space-between"
             >
-                <Stack
-                    flexDirection="row"
-                    alignItems="flex-start"
-                    gap={matchUpSm ? 2.5 : 1.5}
-                    sx={{
-                        px: matchUpSm ? 3.5 : 2
-                    }}
-                >
+                <Stack gap={5}>
                     <Stack
                         flexDirection="row"
+                        alignItems="flex-start"
+                        gap={matchUpSm ? 2.5 : 1.5}
                         sx={{
-                            background: '#594F6D',
-                            // opacity: 0.25,
-                            boxShadow: '-2px 3px 10px rgba(0, 0, 0, 0.09)',
-                            borderRadius: 3,
-                            p: 0.375
+                            px: matchUpSm ? 3.5 : 2
                         }}
                     >
-                        <Box 
-                            component="img"
-                            src="/images/aws.png"
-                        />
+                        <Stack
+                            flexDirection="row"
+                            sx={{
+                                background: '#594F6D',
+                                // opacity: 0.25,
+                                boxShadow: '-2px 3px 10px rgba(0, 0, 0, 0.09)',
+                                borderRadius: 3,
+                                p: 0.375,
+                            }}
+                        >
+                            <Box 
+                                component="img"
+                                // src="/images/aws.png"
+                                src={props.companyLogoURL}
+                                sx={{
+                                    width: 70, 
+                                    height: 67
+                                }}
+                            />
+                        </Stack>
+                        <Stack>
+                            <Typography variant="h5">{props.companyName}</Typography>
+                            <Typography variant="caption" color="text.secondary">{props.companyDesc.length > 70 ? props.companyDesc.slice(0, 65) + '...' : props.companyDesc}</Typography>
+                        </Stack>
                     </Stack>
-                    <Stack>
-                        <Typography variant="h5">{props.companyName}</Typography>
-                        <Typography variant="caption" color="text.secondary">{props.companyDesc}</Typography>
-                    </Stack>
+                    <Box sx={{
+                        px: matchUpSm ? 3.5 : 2
+                    }}>
+                        <Typography 
+                            variant="h6" 
+                            sx={{ 
+                                '& span': {
+                                    color: '#C69BFF'
+                                },
+                                lineHeight: '30px' }}
+                        >
+                            {/* <span>6 Months Free </span> plus <br /> 1,000 credits for startups */}
+                            {props.name}
+                        </Typography>
+                    </Box>
                 </Stack>
-                <Box sx={{
-                    px: matchUpSm ? 3.5 : 2
-                }}>
-                    <Typography 
-                        variant="h6" 
-                        sx={{ 
-                            '& span': {
-                                color: '#C69BFF'
-                            },
-                            lineHeight: '30px' }}
-                    >
-                        <span>6 Months Free </span> plus <br /> 1,000 credits for startups
-                    </Typography>
-                </Box>
                 <Box>
                     <Box
                         sx={{
@@ -97,25 +106,25 @@ export default function DealCard (props) {
                             }}
                         >Save Up To $5000</Typography>
                     </Box>
+                    <Stack
+                        flexDirection="row"
+                        justifyContent="flex-end"
+                        sx={{
+                            px: matchUpSm ? 3 : 2,
+                            pt: 2
+                        }}
+                    >
+                        <Chip 
+                            label="Agency"
+                            variant="outlined"
+                            sx={{
+                                bgcolor: '#fff',
+                                color: '#000',
+                                fontWeight: 700,
+                            }}
+                        />
+                    </Stack>
                 </Box>
-            </Stack>
-            <Stack
-                flexDirection="row"
-                justifyContent="flex-end"
-                sx={{
-                    px: matchUpSm ? 3 : 2,
-                    pt: 2
-                }}
-            >
-                <Chip 
-                    label="Agency"
-                    variant="outlined"
-                    sx={{
-                        bgcolor: '#fff',
-                        color: '#000',
-                        fontWeight: 700,
-                    }}
-                />
             </Stack>
         </Box>
     )
