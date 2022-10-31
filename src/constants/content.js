@@ -138,3 +138,25 @@ export const affiliates = [{
     content: 'Access your statistics & earnings in real time.',
     href: '',
 }]
+
+export const pages = [
+    {
+        title: 'Explore',
+        href: '/explore'
+    }, {
+        title: 'Pricing',
+        href: '/pricing'
+    }, {
+        title: 'Affiliation',
+        href: '/affiliation'
+    }, {
+        title: 'Blog',
+        href: '/blog'
+    }, {
+        title: 'Sign In',
+        href: '/login'
+    }, {
+        title: 'Join Us',
+        href: '/join'
+    }
+]

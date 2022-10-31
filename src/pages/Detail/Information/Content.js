@@ -17,14 +17,14 @@ const item = {
     client: '/images/feedback/clients/1.png',
     clientName: 'Daniel'
 }
-export default function Content () {
+export default function Content ({data}) {
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
     const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
     return (
         <Box
             sx={{
-                px: matchUpMd ? 8 : 0,
+                // px: matchUpMd ? 8 : 0,
                 pt: matchUpMd ? 10 : 2
             }}
         >
@@ -61,8 +61,8 @@ export default function Content () {
                 >
                     <TollIcon />
                     <Stack>
-                        <Typography>$5000 savings</Typography>
-                        <Typography variant="caption" color="text.secondary">On your AWS Activate subscription</Typography>
+                        <Typography>Redeemed {data && data.deals && data.deals.length  ? data.deals[0].redeemedAmount : ''} times</Typography>
+                        <Typography variant="caption" color="text.secondary">in the last 90 days</Typography>
                     </Stack>
                 </Stack>
             </Stack>
@@ -134,13 +134,13 @@ export default function Content () {
             <Stack>
                 <Box
                     component="video"
-                    src="https://www.youtube.com/watch?v=axaqGUxqYBk"
+                    src={data && data.deals && data.deals.length  ? data.deals[0].videoUrl : ''}
                     sx={{
                         pt: 8,
                     }}
                 ></Box>
             </Stack>
-            <Box
+            {/* <Box
                 sx={{
                     pt: 10
                 }}
@@ -157,7 +157,7 @@ export default function Content () {
                     <TestimonialCard key={key} {...item} />
                 )}
                 </Box>
-            </Box>
+            </Box> */}
             <Stack
                 gap={6}
                 sx={{

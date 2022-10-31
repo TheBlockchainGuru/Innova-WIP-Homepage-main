@@ -10,7 +10,8 @@ import {
     useMediaQuery
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import ShareIcon from '@mui/icons-material/Share';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CheckIcon from '@mui/icons-material/Check';
@@ -21,33 +22,11 @@ import GetDeal from '../../components/modals/GetDeal';
 import HomeContainer from '../../components/containers/HomeContainer';
 import DetailPattern from '../../components/patterns/DetailPattern';
 
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-  
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-            <Box sx={{ py: 3 }}>
-                {children}
-            </Box>
-            )}
-        </div>
-    );
-}
-function a11yProps(index) {
-    return {
-      id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
 export default function Detail () {
     const theme = useTheme();
+    const navigate = useNavigate();
+    const { detailId } = useParams();
+    console.log(detailId)
     const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'));
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
     const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
@@ -59,6 +38,56 @@ export default function Detail () {
     };
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const handleDeal = () => {
+        navigate('/login');
+    }
+
+    const  { data, isLoading, error, refetch } = useQuery("deals", async () => {
+        return fetch(process.env.REACT_APP_END_POINT, {
+            method: 'POST',
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({ 
+                query: `
+                {
+                    deals(filter:{ids: ["${detailId}"]}, page:0, perPage: 50, sortField: createdAt, sortOrder: Desc) {
+                        _id
+                        amountSaved
+                        categories {
+                            _id
+                            name
+                        }
+                        categoriesIds
+                        companyDesc
+                        companyLogoURL
+                        companyName
+                        createdAt
+                        descriptionInHTML
+                        externalLink
+                        name
+                        promoText
+                        redeemedAmount
+                        requirements
+                        smallDesc
+                        updatedAt
+                        videoUrl
+                    }
+                }
+                `
+            })
+        })
+        .then((response) => {
+            if (response.status >= 400) {
+                throw new Error("Error fetching data");
+            } else {
+                return response.json();
+            }
+        })
+        .then((data) => data.data)
+    })
+
+    console.log(data, data)
+
     return (
         <Box 
             sx={{
@@ -87,7 +116,7 @@ export default function Detail () {
                                 >
                                     All Deals
                                 </Link>
-                                <Typography color="text.primary">AWS Activate Promo Code</Typography>
+                                <Typography color="text.primary">{data && data.deals && data.deals.length  ? data.deals[0].companyName : ''}</Typography>
                             </Breadcrumbs>
                             <Stack 
                                 flexDirection={matchUpSm ? "row" : "column"}
@@ -101,7 +130,7 @@ export default function Detail () {
                                     />
                                 </Stack>
                                 <Stack>
-                                    <Typography variant="h2" sx={{ textAlign: matchUpSm ? 'left' : 'center'}}>AWS Activate</Typography>
+                                    <Typography variant="h2" sx={{ textAlign: matchUpSm ? 'left' : 'center'}}>{data && data.deals && data.deals.length  ? data.deals[0].companyName : ''}</Typography>
                                     <Typography 
                                         variant="h6" 
                                         sx={{ 
@@ -109,7 +138,7 @@ export default function Detail () {
                                             color: '#C7C7C7',
                                             textAlign: matchUpSm ? 'left' : 'center'
                                         }}
-                                    >Amazon's cloud services platform</Typography>
+                                    >{data && data.deals && data.deals.length  ? data.deals[0].descriptionInHTML : ''}</Typography>
                                 </Stack>
                             </Stack>
                             <Typography
@@ -118,7 +147,7 @@ export default function Detail () {
                                     maxWidth: 515,
                                     fontFamily: 'Roboto'
                                 }}
-                            >Efficiently develop, deploy and maintain high-performance and scalable applications.</Typography>
+                            >{data && data.deals && data.deals.length  ? data.deals[0].smallDesc : ''}</Typography>
                         </Stack>
                         <Box flex={1}
                             sx={{
@@ -145,7 +174,7 @@ export default function Detail () {
                                         borderRadius: 2,
                                         py: 1.5
                                     }}
-                                    onClick={handleOpen}
+                                    onClick={handleDeal}
                                 >
                                     <Typography variant="body2">Get deal for $149</Typography>
                                 </Button>
@@ -168,13 +197,13 @@ export default function Detail () {
                                         </Typography>
                                     </Stack>
                                 </Stack>
-                                <Button
+                                {/* <Button
                                     variant="outlined"
                                     fullWidth
                                     startIcon={<ShareIcon />}
                                 >
                                     Share deal
-                                </Button>
+                                </Button> */}
                             </Stack>
                             <Stack
                                 gap={1}
@@ -210,7 +239,7 @@ export default function Detail () {
                             </Tabs>
                         </Box>
                         <TabPanel value={value} index={0}> */}
-                            <Information />
+                            <Information data={data} />
                         {/* </TabPanel>
                         <TabPanel value={value} index={1}>
                             <Features />

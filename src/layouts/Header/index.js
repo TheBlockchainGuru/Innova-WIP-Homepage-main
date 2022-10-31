@@ -16,36 +16,49 @@ import {
     Divider
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Link, useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
-import { categories } from '../../constants/content';
+import { categories, pages } from '../../constants/content';
 import HomeContainer from '../../components/containers/HomeContainer';
-
-const pages = [{
-        title: 'Explore',
-        href: '/explore'
-    }, {
-        title: 'Pricing',
-        href: '/pricing'
-    }, {
-        title: 'Affiliation',
-        href: '/affiliation'
-    }, {
-        title: 'Blog',
-        href: '/blog'
-    }, {
-        title: 'Sign In',
-        href: '/login'
-    }, {
-        title: 'Join Us',
-        href: '/join'
+   
+const CATEGORY_QUERY = `
+{
+    categories(filter:{}, page:0, perPage: 8, sortField: createdAt, sortOrder:Desc) {
+        _id
+        createdAt
+        deleted {
+            adminId
+            date
+        }
+        imageUrl
+        name
+        updatedAt
     }
-];
+}
+`
 
 export default function Header () {
+    const  { data, isLoading, error } = useQuery("categories", () => {
+        return fetch(process.env.REACT_APP_END_POINT, {
+            method: 'POST',
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({ query: CATEGORY_QUERY })
+        })
+        .then((response) => {
+            if (response.status >= 400) {
+                throw new Error("Error fetching data");
+            } else {
+                return response.json();
+            }
+        })
+        .then((data) => data.data)
+    })
 
     const theme = useTheme();
     const navigate = useNavigate();
+    const [ searchParams ] = useSearchParams();
+    const c = searchParams.get('c');
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
     const matchUpSm = useMediaQuery(theme.breakpoints.up('sm'));
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -228,19 +241,23 @@ export default function Header () {
                                     flexItem
                                 />
                                 <Stack gap={4}>
-                                {categories.map((item, key) =>
+                                {(data && data.categories && data.categories.length)
+                                ?   data.categories.map((item, key) =>
                                     <Typography
                                         key={key}
                                         variant="caption"
-                                        onClick={() => {handleCloseUserMenu(); navigate('/explore?c=' + key)}}
+                                        onClick={() => {handleCloseUserMenu(); navigate('/explore?c=' + item._id)}}
                                         sx={{
                                             cursor: 'pointer',
                                             fontWeight: 500,
                                             textTransform: 'uppercase',
-                                            textDecoration: 'underline'
+                                            textDecoration: c === item._id ? 'underline' : 'none',
+                                            color: c === item._id ? '#b075ff' : 'text.secondary'
                                         }}
-                                    >{item.title}</Typography>
-                                )}
+                                    >{item.name}</Typography>
+                                    )
+                                :   <></>
+                                }
                                 </Stack>
                             </Stack>
                         </Stack>
@@ -275,13 +292,6 @@ export default function Header () {
                             onClick={() => { handleCloseUserMenu(); navigate('/register')}}
                         >Join us</Button>
                     </Stack>
-                    {/* {pages.map((page, key) => (
-                    <MenuItem key={key} onClick={() => handleCloseUserMenu}>
-                        <Link to={page.href} style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <Typography textAlign="center">{page.title}</Typography>
-                        </Link>
-                    </MenuItem>
-                    ))} */}
                 </Menu>
             </Toolbar>
             <Divider />
@@ -306,10 +316,12 @@ export default function Header () {
                         fontWeight: 500
                     }}
                 >Categories:</Typography>
-                {categories.map((item, key) =>
+                {(data && data.categories && data.categories.length) 
+                ?
+                    data.categories.map((item, key) =>
                     <Link 
                         key={key}
-                        to={`/explore?c=${key}`} 
+                        to={`/explore?c=${item._id}`} 
                         style={{ 
                             color: 'inherit',
                             textDecoration: 'none'
@@ -323,14 +335,17 @@ export default function Header () {
                                 fontFamily: 'Roboto',
                                 fontWeight: 500,
                                 textTransform: 'uppercase',
+                                textDecoration: c === item._id ? 'underline' : 'none',
+                                color: c === item._id ? '#b075ff' : "text.secondary",
                                 '&:hover': {
                                     transform: 'scaleX(1.1)',
-                                    color:  theme.palette.text.secondary
                                 }
                             }}
-                        >{item.title}</Typography>
+                        >{item.name}</Typography>
                     </Link>
-                )}
+                    )
+                :   <></>
+                }
             </Stack>
         </AppBar>
     );

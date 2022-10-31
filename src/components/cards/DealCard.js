@@ -30,7 +30,7 @@ export default function DealCard (props) {
                     backdropFilter: 'blur(42.5447px)',
                 }
             }}
-            onClick={() => navigate('/detail')}
+            onClick={() => navigate('/detail/' + props._id)}
         >
             <Stack
                 gap={5}

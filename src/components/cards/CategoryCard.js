@@ -19,7 +19,7 @@ export default function CategoryCard (props) {
                 p: 0.375,
                 cursor: 'pointer'
             }}
-            onClick={() => navigate('/explore?c=' + props.index)}
+            onClick={() => navigate('/explore?c=' + props._id)}
         >
             <Box
                 sx={{

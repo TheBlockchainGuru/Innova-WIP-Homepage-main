@@ -9,6 +9,7 @@ import {
     Select
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { useQuery } from 'react-query';
 import DealCard from '../../components/cards/DealCard';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { categories } from '../../constants/content';
@@ -24,7 +25,71 @@ export default function Explorer () {
     const [ searchParams ] = useSearchParams();
 
     const c = searchParams.get('c');
+
+    const [order, setOrder] = React.useState('createdAt');
+    const [direction, setDirection] = React.useState('Desc');
+    const [page, setPage] = React.useState(0);
+
+    const handleOrder = (e) => {
+        if (e.target.value === '2') {
+            setOrder('createdAt');
+            setDirection('Desc');
+        } else if (e.target.value === '3') {
+            setOrder('createdAt');
+            setDirection('Desc');
+        } else {
+            setOrder('createdAt');
+            setDirection('Desc');
+        }
+    }
     
+    React.useEffect(() => {
+        refetch();
+    }, [order, direction])
+        
+    const  { data, isLoading, error, refetch } = useQuery("deals", () => {
+        return fetch(process.env.REACT_APP_END_POINT, {
+            method: 'POST',
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({ 
+                query: `
+                {
+                    deals(filter:{}, page:${page}, perPage: 50, sortField: ${order}, sortOrder:${direction}) {
+                        _id
+                        amountSaved
+                        categories {
+                            _id
+                            name
+                        }
+                        categoriesIds
+                        companyDesc
+                        companyLogoURL
+                        companyName
+                        createdAt
+                        descriptionInHTML
+                        externalLink
+                        name
+                        promoText
+                        redeemedAmount
+                        requirements
+                        smallDesc
+                        updatedAt
+                        videoUrl
+                    }
+                }
+                `
+            })
+        })
+        .then((response) => {
+            if (response.status >= 400) {
+                throw new Error("Error fetching data");
+            } else {
+                return response.json();
+            }
+        })
+        .then((data) => data.data)
+    })
+
     return (
         <Box sx={{ 
                 position: 'relative', 
@@ -60,7 +125,8 @@ export default function Explorer () {
                         }}
                     >
                         <Typography variant="body2" color="text.secondary" 
-                            sx={{ fontStyle: categories[c] ? 'italic' : 'inherit'}}>{categories[c] ? "No Deals Available" : "217 Deals Available"}</Typography>
+                            sx={{ fontStyle: categories[c] ? 'italic' : 'inherit'}}
+                        >{data && data.deals && data.deals.length ? `${data.deals.length} Deals Available` : 'No Deals Available'}</Typography>
                         <Stack
                             flexDirection={matchUpSm ? "row" : "column"}
                             justifyContent={matchUpMd ? 'inherit' : 'space-between'}
@@ -71,29 +137,14 @@ export default function Explorer () {
                                 alignItems={matchUpMd ? "center" : "flex-start"}
                                 gap={matchUpMd ? 2 : 0.5}
                             >
-                                <Typography variant="body2" color="text.secondary">Filter By:</Typography>
-                                {/* <OutlinedInput 
-                                    placeholder='All Deals'
-                                    size="small"
-                                /> */}
-                                <Select
-                                    native
-                                    size="small"
-                                    // label="All Deals"
-                                >
-                                    <option>All Deals</option>
-                                </Select>
-                            </Stack>
-                            <Stack
-                                flexDirection={matchUpMd ? "row" : "column"}
-                                alignItems={matchUpMd ? "center" : "flex-start"}
-                                gap={matchUpMd ? 2 : 0.5}
-                            >
                                 <Typography variant="body2" color="text.secondary">Order By:</Typography>
                                 <Select native
                                     size="small"
+                                    onClick={handleOrder}
                                 >
-                                    <option value="">Most popular first</option>
+                                    <option value="1">Most popular first</option>
+                                    <option value="2">A - Z first</option>
+                                    <option value="3">Z - A first</option>
                                 </Select>
                             </Stack>
                         </Stack>
@@ -130,9 +181,14 @@ export default function Explorer () {
                             columnGap: matchUpLg ? 8 : 4
                         }}
                     >
-                        {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map((item, key) =>
-                            <DealCard key={key} {...item} />
-                        )}
+                    {(data && data.deals && data.deals.length) 
+                    ?   
+                        data.deals.map((element, key) =>
+                            <DealCard key={key} {...element} />
+                        )
+                    :   
+                        <></>
+                    }
                     </Box>
                     }
                 </Box>
