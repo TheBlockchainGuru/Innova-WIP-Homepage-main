@@ -25,6 +25,7 @@ export default function Explorer () {
     const [ searchParams ] = useSearchParams();
 
     const c = searchParams.get('c');
+    const filter = c ? ` { categoriesIds: ["${c}"] }` : "{}";
 
     const [order, setOrder] = React.useState('createdAt');
     const [direction, setDirection] = React.useState('Desc');
@@ -35,26 +36,26 @@ export default function Explorer () {
             setOrder('createdAt');
             setDirection('Desc');
         } else if (e.target.value === '3') {
-            setOrder('createdAt');
+            setOrder('companyName');
             setDirection('Desc');
         } else {
-            setOrder('createdAt');
-            setDirection('Desc');
+            setOrder('companyName');
+            setDirection('Asc');
         }
     }
-    
+
     React.useEffect(() => {
         refetch();
-    }, [order, direction])
-        
-    const  { data, isLoading, error, refetch } = useQuery("deals", () => {
+    }, [order, direction, c])
+
+    const  {data, isLoading, isRefetching, refetch} = useQuery("deals", async () => {
         return fetch(process.env.REACT_APP_END_POINT, {
             method: 'POST',
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({ 
                 query: `
                 {
-                    deals(filter:{}, page:${page}, perPage: 50, sortField: ${order}, sortOrder:${direction}) {
+                    deals(filter:${filter}, page:${page}, perPage: 50, sortField: ${order}, sortOrder:${direction}) {
                         _id
                         amountSaved
                         categories {
@@ -142,33 +143,19 @@ export default function Explorer () {
                                     size="small"
                                     onClick={handleOrder}
                                 >
-                                    <option value="1">Most popular first</option>
+                                    <option value="1">Most recent first</option>
                                     <option value="2">A - Z first</option>
                                     <option value="3">Z - A first</option>
                                 </Select>
                             </Stack>
                         </Stack>
                     </Stack>
-                        {categories[c] ?
-
-                            <Stack
-                                alignItems="center"
-                                justifyContent="center"
-                                sx={{
-                                    py: 30
-                                }}
-                            >
-                                <Stack gap={5}>
-                                    <Stack gap={2}>
-                                        <Typography variant="h1">Sorry, No Result found ☹️</Typography>
-                                        <Typography variant="h5" color="text.secondary" sx={{ fontWeight: 500 }}>We’re sorry what you’re looking for; please try another way</Typography>
-                                    </Stack>
-                                    <Stack flexDirection="row">
-                                        <Button variant="outlined" onClick={() => navigate('/')}>Back to Home</Button>
-                                    </Stack>
-                                </Stack>
-                            </Stack>
-                        :
+                    {isLoading || isRefetching 
+                    ?
+                        <Typography>Loading...</Typography>
+                    :
+                    (data && data.deals && data.deals.length 
+                    ?
                     <Box
                         sx={{
                             display: 'grid',
@@ -181,15 +168,29 @@ export default function Explorer () {
                             columnGap: matchUpLg ? 8 : 4
                         }}
                     >
-                    {(data && data.deals && data.deals.length) 
-                    ?   
-                        data.deals.map((element, key) =>
+                        {data.deals.map((element, key) =>
                             <DealCard key={key} {...element} />
-                        )
-                    :   
-                        <></>
-                    }
+                        )}
                     </Box>
+                    :
+                        <Stack
+                            alignItems="center"
+                            justifyContent="center"
+                            sx={{
+                                py: 30
+                            }}
+                        >
+                            <Stack gap={5}>
+                                <Stack gap={2}>
+                                    <Typography variant="h1">Sorry, No Result found ☹️</Typography>
+                                    <Typography variant="h5" color="text.secondary" sx={{ fontWeight: 500 }}>We’re sorry what you’re looking for; please try another way</Typography>
+                                </Stack>
+                                <Stack flexDirection="row">
+                                    <Button variant="outlined" onClick={() => navigate('/')}>Back to Home</Button>
+                                </Stack>
+                            </Stack>
+                        </Stack>
+                    )   
                     }
                 </Box>
             </HomeContainer>
